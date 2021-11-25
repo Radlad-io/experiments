@@ -1,0 +1,25 @@
+.footer {
+  width: 100%;
+  position: absolute;
+  color: var(--white);
+  display: block;
+  margin: 1rem auto;
+  bottom: 0;
+  p {
+    display: block;
+    position: relative;
+    margin: auto;
+    text-align: center;
+    font-size: 0.8rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 200;
+    font-style: normal;
+    letter-spacing: 1px;
+    color: var(--charcoal);
+  }
+  a {
+    display: inline-block;
+    font-weight: 700;
+    color: var(--black);
+  }
+}

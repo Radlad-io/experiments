@@ -1,0 +1,33 @@
+.wrapper {
+  h1 {
+    text-transform: uppercase;
+    margin: 50px 0;
+  }
+  h2 {
+    font-size: 1.2rem;
+    text-transform: uppercase;
+    color: var(--white);
+    margin: 0 0 15px 0;
+  }
+  a {
+    color: var(--white);
+    padding: 1px 0;
+    margin: 1px 0;
+    &:hover {
+      color: var(--gray-300);
+    }
+  }
+}
+
+.flex {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(4, 1fr);
+}
+.block {
+  display: flex;
+  flex-direction: column;
+  background-color: var(--black);
+  padding: 25px;
+  border-radius: 3px;
+}

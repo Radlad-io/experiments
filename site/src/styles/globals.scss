@@ -1,0 +1,94 @@
+:root {
+  --charcoal: #2e2a2b;
+  --charcoal-80: #2e2a2b;
+  --charcoal-60: #585555;
+  --charcoal-40: #abaaaa;
+  --charcoal-20: #d5d4d5;
+  --sierra: #f33800;
+  --sierra-80: #f56033;
+  --sierra-60: #f88866;
+  --sierra-40: #faaf99;
+  --sierra-20: #fdd7cc;
+  --stone: #ded5c9;
+  --stone-80: #e5ddd4;
+  --stone-60: #ebe6df;
+  --stone-40: #f2eee9;
+  --stone-20: #f8f7f4;
+  --white: #fff;
+  --black: #000;
+  --gray-100: #f3f3f3;
+  --gray-200: #eeeeee;
+  --gray-300: #dddddd;
+  --gray-400: #cccccc;
+  --gray-500: #bbbbbb;
+  --gray-600: #a3a3a3;
+  --gray-700: #8d8d8d;
+  --gray-800: #737373;
+  --gray-900: #5a5a5a;
+}
+
+html,
+body {
+  padding: 0;
+  margin: 0;
+  font-family: -apple-system, BlinkMacSystemFont, Segoe UI, Roboto, Oxygen,
+    Ubuntu, Cantarell, Fira Sans, Droid Sans, Helvetica Neue, sans-serif;
+  background-color: var(--white);
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+span {
+  display: inline-block;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  font-size: 4rem;
+  letter-spacing: 0.08em;
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 700;
+  font-style: normal;
+  margin: 0;
+  color: var(--black);
+}
+
+h2 {
+  font-size: 3.5rem;
+}
+
+h3 {
+  font-size: 3rem;
+}
+
+h4 {
+  font-size: 2.5rem;
+}
+
+h5 {
+  font-size: 2rem;
+}
+
+h6 {
+  font-size: 1.5rem;
+}
+
+p {
+  font-family: "IBM Plex Sans", sans-serif;
+  font-weight: 400;
+  font-style: normal;
+}
+/* 
+font-family: 'IBM Plex Mono', monospace;
+font-family: 'IBM Plex Sans', sans-serif; */
