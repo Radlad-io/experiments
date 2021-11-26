@@ -7,7 +7,7 @@ export default function Blender001() {
   const [animate, setAnimate] = useState(true);
   return (
     <>
-      <ReturnButton recycle />
+      <ReturnButton />
 
       <div className={styles.flex}>
         <h1>Blender</h1>
