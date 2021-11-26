@@ -19,8 +19,10 @@
   background-color: var(--black);
   margin: 10px;
   transition: transform 1s ease-in-out;
-  svg {
-    margin-right: 20px;
+  i {
+    font-size: 1.3rem;
+    color: var(--white);
+    margin-right: 15px;
     transform: rotate(45deg);
   }
 
@@ -30,23 +32,18 @@
 }
 
 .reload {
+  font-size: 2rem;
   display: block;
   position: absolute;
   z-index: 900;
-  right: 20px;
-  top: 0;
-  margin: 10px 0;
-  height: 75px;
-  padding: 20px;
+  right: 30px;
+  top: 30px;
   background-color: var(--white);
-  color: red;
   cursor: pointer;
   transform-origin: center center;
   transition: color 300ms ease-in-out, transform 1s;
-  overflow: hidden;
   &:hover {
     transition: color 300ms ease-in-out, transform 1s;
-    color: var(--gray-200);
     transform: rotate(45deg);
   }
 }
