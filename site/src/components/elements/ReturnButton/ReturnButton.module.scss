@@ -33,9 +33,9 @@
   display: block;
   position: absolute;
   z-index: 900;
-  right: 0;
+  right: 20px;
   top: 0;
-  margin: 10px;
+  margin: 10px 0;
   height: 75px;
   padding: 20px;
   background-color: var(--white);
@@ -43,6 +43,7 @@
   cursor: pointer;
   transform-origin: center center;
   transition: color 300ms ease-in-out, transform 1s;
+  overflow: hidden;
   &:hover {
     transition: color 300ms ease-in-out, transform 1s;
     color: var(--gray-200);
