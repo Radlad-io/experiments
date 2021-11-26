@@ -1,15 +1,15 @@
+@import "../../../styles/mixins";
+
+// TODO: There is a layout shift when state changes for the first time
 .heading {
   font-family: "IBM Plex Mono", monospace;
   display: block;
-  position: relative;
   margin: auto;
   font-size: 4rem;
   letter-spacing: 0.08rem;
   font-weight: 700;
-  font-style: normal;
-  /* overflow: hidden; */
-  @media (max-width: 768px) {
-    font-size: 3rem;
+  @include for-phone-only {
+    font-size: 2.5rem;
   }
 }
 
@@ -36,4 +36,7 @@
   width: 96%;
   height: 6px;
   background-color: var(--black);
+  @include for-phone-only {
+    height: 4px;
+  }
 }

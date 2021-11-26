@@ -73,7 +73,7 @@ const FirstLetterVariants = {
     transition: { duration: 1.2, ...transition },
   },
   out: {
-    y: 150,
+    y: [0, -15, 150],
     opacity: 0,
     transition: { duration: 1.2, ...transition },
   },
@@ -91,7 +91,7 @@ const SecondLetterVariants = {
     transition: { duration: 1.2, ...transition },
   },
   out: {
-    y: 150,
+    y: [0, -15, 150],
     opacity: 0,
     transition: { duration: 1.2, ...transition },
   },
@@ -125,7 +125,6 @@ export default function Animation001() {
       <div
         onClick={() => {
           setAnimate(!animate);
-          console.log(animate);
         }}
       >
         <ReturnButton recycle />

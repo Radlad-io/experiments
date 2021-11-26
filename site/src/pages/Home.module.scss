@@ -1,3 +1,5 @@
+@import "../styles/mixins";
+
 .wrapper {
   h1 {
     text-transform: uppercase;
@@ -5,12 +7,17 @@
   }
   h2 {
     font-size: 1.2rem;
+    letter-spacing: .5px;
     text-transform: uppercase;
-    color: var(--white);
+    color: var(--black);
     margin: 0 0 15px 0;
   }
+  p {
+    color: var(--vlack);
+    text-decoration: underline;
+  }
   a {
-    color: var(--white);
+    color: var(--black);
     padding: 1px 0;
     margin: 1px 0;
     &:hover {
@@ -19,15 +26,41 @@
   }
 }
 
-.flex {
+.grid {
   display: grid;
   grid-gap: 20px;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(1, 1fr);
+  @include for-tablet-portrait-up {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  @include for-tablet-landscape-up {
+    grid-template-columns: repeat(4, 1fr);
+  }
 }
 .block {
   display: flex;
   flex-direction: column;
-  background-color: var(--black);
+  background-color: var(--gray-200);
   padding: 25px;
-  border-radius: 3px;
+  color: black;
+  border-top: 5px solid black;
+  div {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+  a {
+    display: block;
+  }
+  svg {
+    display: block;
+    margin-left: 8px;
+  }
 }
+
+// BG COLORS
+#framerMotion {
+  grid-row: span 2;
+}
+
+
