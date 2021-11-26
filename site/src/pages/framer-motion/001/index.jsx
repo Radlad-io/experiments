@@ -1,7 +1,7 @@
 import styles from "./001.module.scss";
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import * as variants from "./001.motion";
+import * as variants from "@motion/framer-motion/001.motion";
 
 import ReturnButton from "@components/elements/ReturnButton/ReturnButton";
 import CodeLink from "@components/elements/CodeLink/CodeLink";
