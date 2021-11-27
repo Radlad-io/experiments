@@ -5,7 +5,7 @@ function CodeLink({ link }) {
   return (
     <div className={styles.footer}>
       <p>
-        💻 Code for this component can be found{" "}
+        💻 Project files can be found{" "}
         <a>
           <Link href={link} passHref>
             here!

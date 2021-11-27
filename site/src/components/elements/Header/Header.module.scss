@@ -1,0 +1,63 @@
+.header {
+  display: inline-block;
+  p {
+    display: inline-block;
+    font-weight: 100;
+    font-style: normal;
+    letter-spacing: 1px;
+    color: var(--white);
+  }
+}
+
+.btn {
+  position: fixed;
+  top: 0;
+  left: 0;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 30px;
+  cursor: pointer;
+  background-color: var(--black);
+  margin: 10px;
+  z-index: 500;
+  transition: transform 1s ease-in-out;
+  p {
+    font-family: "IBM Plex Sans", sans-serif;
+  }
+  i {
+    font-size: 1rem;
+    margin-right: 1rem;
+    color: var(--white);
+  }
+}
+
+.info {
+  font-size: 2rem;
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+}
+
+.reload {
+  font-size: 2rem;
+  display: block;
+  padding: 10px;
+  cursor: pointer;
+  transform-origin: center center;
+  transition: color 300ms ease-in-out, transform 1s;
+  &:hover {
+    transition: color 300ms ease-in-out, transform 1s;
+    transform: rotate(45deg);
+  }
+}
+
+.actions {
+  display: flex;
+  flex-direction: row;
+  position: absolute;
+  z-index: 500;
+  right: 30px;
+  top: 30px;
+}

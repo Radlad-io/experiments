@@ -3,20 +3,19 @@ import React, { useState } from "react";
 import { motion } from "framer-motion";
 import * as variants from "@motion/framer-motion/001.motion";
 
-import ReturnButton from "@components/elements/ReturnButton/ReturnButton";
+import Header from "@components/elements/Header/Header";
 import CodeLink from "@components/elements/CodeLink/CodeLink";
 
 export default function Animation001() {
   const [animate, setAnimate] = useState(true);
   return (
     <>
-      <div
-        onClick={() => {
-          setAnimate(!animate);
-        }}
-      >
-        <ReturnButton recycle />
-      </div>
+      <Header
+        title="Exploring Framer Motion"
+        info="Framer-Motion is a powerful motion library for React. I've wanted to get more familiar with it so I'm putting together a few examples. This one is focused on choregraphing different elements and reacting to state change."
+        animate={animate}
+        setAnimate={setAnimate}
+      />
       <div className={styles.flex}>
         <h1 className={styles.heading}>
           <motion.div initial="inital" animate={animate ? "in" : "out"}>
@@ -71,7 +70,7 @@ export default function Animation001() {
           </motion.div>
         </h1>
       </div>
-      <CodeLink link="https://github.com/Radlad-io/workshop/blob/main/src/components/layout/Layout.js" />
+      <CodeLink link="https://github.com/Radlad-io/experiments/tree/main/site/src/pages/framer-motion/001" />
     </>
   );
 }

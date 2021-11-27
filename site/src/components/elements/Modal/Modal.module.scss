@@ -1,0 +1,28 @@
+.modal {
+  position: fixed;
+  width: 100vw;
+  height: 100vh;
+  top: 0;
+  left: 0;
+  z-index: 450;
+  h3 {
+    font-size: 1.75rem;
+    text-transform: uppercase;
+    max-width: 650px;
+    margin: 15px 25px;
+  }
+  p {
+    color: var(--black);
+    max-width: 700px;
+    margin: 10px 25px;
+  }
+  .modalBg {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100vw;
+    height: 100vh;
+    background-color: var(--white);
+  }
+}
