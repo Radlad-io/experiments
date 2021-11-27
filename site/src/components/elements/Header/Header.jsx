@@ -9,12 +9,12 @@ export default function ReturnButton({ title, info, animate, setAnimate }) {
   return (
     <div className={styles.header}>
       <Link href="/" passHref>
-        <div className={styles.btn}>
+        <div className={`${styles.btn} noselect`}>
           <i className={`material-icons`}>arrow_back</i>
           <p>Return</p>
         </div>
       </Link>
-      <div className={styles.actions}>
+      <div className={`${styles.actions} noselect`}>
         {title && (
           <i
             onClick={() => {

@@ -2,8 +2,12 @@
 
 .wrapper {
   h1 {
+    font-size: 2.5rem;
     text-transform: uppercase;
     margin: 50px 0;
+    @include for-tablet-landscape-up {
+      font-size: 4rem;
+    }
   }
   h2 {
     font-size: 1.3rem;
@@ -31,6 +35,9 @@
   display: grid;
   grid-gap: 20px;
   grid-template-columns: repeat(1, 1fr);
+  @include for-phone-only {
+    grid-template-columns: repeat(1, 1fr);
+  }
   @include for-tablet-portrait-up {
     grid-template-columns: repeat(2, 1fr);
   }
@@ -52,6 +59,7 @@
   }
   a {
     display: block;
+    line-height: 1.45rem;
   }
   svg {
     display: block;
@@ -63,6 +71,9 @@
   grid-row: span 2;
   grid-column: span 2;
   background-color: var(--pistachio);
+  @include for-phone-only {
+    grid-column: 1;
+  }
   h2 {
     font-weight: 900;
   }
