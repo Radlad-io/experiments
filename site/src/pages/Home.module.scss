@@ -6,11 +6,12 @@
     margin: 50px 0;
   }
   h2 {
-    font-size: 1.2rem;
-    letter-spacing: .5px;
+    font-size: 1.3rem;
+    letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--black);
     margin: 0 0 15px 0;
+    font-weight: 400;
   }
   p {
     color: var(--vlack);
@@ -21,7 +22,7 @@
     padding: 1px 0;
     margin: 1px 0;
     &:hover {
-      color: var(--gray-300);
+      color: var(--gray-500);
     }
   }
 }
@@ -58,9 +59,19 @@
   }
 }
 
-// BG COLORS
+#current {
+  grid-row: span 2;
+  grid-column: span 2;
+  background-color: var(--pistachio);
+  h2 {
+    font-weight: 900;
+  }
+  a {
+    &:hover {
+      color: var(--gray-200);
+    }
+  }
+}
 #framerMotion {
   grid-row: span 2;
 }
-
-

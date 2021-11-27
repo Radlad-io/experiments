@@ -74,10 +74,44 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
+                id={styles.current}
+              >
+                <h2>Currently working on</h2>
+
+                <Link
+                  href="https://www.awwwards.com/academy/course/flawless-typography-understanding-and-breaking-the-rules"
+                  passHref
+                >
+                  A typography course
+                </Link>
+                <Link
+                  href="https://www.awwwards.com/academy/course/impress-everyone-with-a-3d-particle-scene-starting-from-bad-models"
+                  passHref
+                >
+                  A Three.js + Blender particle course
+                </Link>
+                <Link
+                  href="https://www.awwwards.com/academy/course/audio-reactive-visuals-with-code"
+                  passHref
+                >
+                  Audio visualizations with P5.js
+                </Link>
+                <Link
+                  href="https://www.awwwards.com/academy/course/audio-reactive-visuals-with-code"
+                  passHref
+                >
+                  WebXR API basics with Three.js
+                </Link>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
                 id={styles.framerMotion}
               >
                 <h2>Framer Motion</h2>
-                <Link href="/framer-motion/001">Example 001</Link>
+                <Link href="/framer-motion/001" passHref>
+                  Example 001
+                </Link>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -101,7 +135,7 @@ export default function Home() {
                 id={styles.electron}
               >
                 <h2>Electron</h2>
-                <Link href="https://github.com/Radlad-io/RadBooth-App">
+                <Link href="https://github.com/Radlad-io/RadBooth-App" passHref>
                   <div>
                     Radbooth
                     <svg
@@ -131,7 +165,7 @@ export default function Home() {
                 id={styles.nodejs}
               >
                 <h2>Node.JS</h2>
-                <Link href="https://github.com/Radlad-io/Soundbot">
+                <Link href="https://github.com/Radlad-io/Soundbot" passHref>
                   <div>
                     SoundBot
                     <svg
@@ -160,8 +194,26 @@ export default function Home() {
                 className={styles.block}
                 id={styles.nodejs}
               >
+                <h2>P5.JS</h2>
+                <p>Coming soon.</p>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.nodejs}
+              >
+                <h2>WebXR API</h2>
+                <p>Coming soon.</p>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.nodejs}
+              >
                 <h2>Blender</h2>
-                <Link href="/blender/001">Example 001 (Physics)</Link>
+                <Link href="/blender/001" passHref>
+                  Example 001 (Physics)
+                </Link>
               </motion.article>
             </div>
           </main>

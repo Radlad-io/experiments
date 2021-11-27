@@ -5,7 +5,6 @@
     font-weight: 100;
     font-style: normal;
     letter-spacing: 1px;
-    color: var(--white);
   }
 }
 
@@ -24,6 +23,7 @@
   z-index: 500;
   transition: transform 1s ease-in-out;
   p {
+    color: var(--white);
     font-family: "IBM Plex Sans", sans-serif;
   }
   i {
