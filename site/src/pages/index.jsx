@@ -96,10 +96,7 @@ export default function Home() {
                 >
                   Audio visualizations with P5.js
                 </Link>
-                <Link
-                  href="https://www.awwwards.com/academy/course/audio-reactive-visuals-with-code"
-                  passHref
-                >
+                <Link href="https://www.udemy.com/course/learn-webxr" passHref>
                   WebXR API basics with Three.js
                 </Link>
               </motion.article>

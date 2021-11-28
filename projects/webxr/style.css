@@ -1,0 +1,62 @@
+:root {
+  --white: #fff;
+  --black: #000;
+  --gray-100: #f3f3f3;
+  --gray-200: #eeeeee;
+  --gray-300: #dddddd;
+  --gray-400: #cccccc;
+  --gray-500: #bbbbbb;
+  --gray-600: #a3a3a3;
+  --gray-700: #8d8d8d;
+  --gray-800: #737373;
+  --gray-900: #5a5a5a;
+  --red-salsa: #f94144;
+  --orange-red: #f3722cff;
+  --yellow-orange-color-wheel: #f8961eff;
+  --mango-tango: #f9844aff;
+  --maize-crayola: #f9c74fff;
+  --pistachio: #90be6dff;
+  --zomp: #43aa8bff;
+  --cadet-blue: #4d908eff;
+  --queen-blue: #577590ff;
+  --cg-blue: #277da1ff;
+}
+
+body {
+  margin: 0;
+  background-color: #fff;
+  color: #fff;
+  font-family: Monospace;
+  font-size: 16px;
+  line-height: 24px;
+  overscroll-behavior: none;
+}
+
+a {
+  color: #ff0;
+  text-decoration: none;
+}
+
+a:hover {
+  text-decoration: underline;
+}
+
+button {
+  cursor: pointer;
+  text-transform: uppercase;
+}
+
+canvas {
+  display: block;
+}
+
+a,
+button,
+input,
+select {
+  pointer-events: auto;
+}
+
+:root {
+  --sierra: #f33800;
+}
