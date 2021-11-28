@@ -48,12 +48,16 @@
 .block {
   display: flex;
   flex-direction: column;
-  background-color: var(--gray-200);
+  background-color: var(--gray-300);
   padding: 25px;
   color: black;
   ol {
     margin: 0;
-    padding: 12px 20px;
+    padding: 0 20px 10px 20px;
+  }
+  ul {
+    margin: 0;
+    padding: 0 20px 10px 20px;
   }
   div {
     display: flex;
@@ -72,7 +76,7 @@
 
 .disclaimer {
   margin: 20px -25px -24px;
-  background-color: var(--red-salsa);
+  background-color: var(--gray-700);
   padding: 0 15px;
   p {
     margin-left: 10px;
@@ -88,18 +92,23 @@
 }
 
 #current {
-  grid-row: span 2;
+  grid-row: span 3;
   grid-column: span 2;
-  background-color: var(--pistachio);
+  background-color: var(--black);
   @include for-phone-only {
     grid-column: 1;
   }
   h2 {
+    color: white;
     font-weight: 900;
   }
+  li {
+    color: white;
+  }
   a {
+    color: white;
     &:hover {
-      color: var(--gray-200);
+      color: var(--gray-500);
     }
   }
 }

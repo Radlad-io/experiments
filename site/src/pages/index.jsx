@@ -77,28 +77,32 @@ export default function Home() {
                 id={styles.current}
               >
                 <h2>Currently working on</h2>
-
-                <Link
-                  href="https://www.awwwards.com/academy/course/flawless-typography-understanding-and-breaking-the-rules"
-                  passHref
-                >
-                  A typography course
-                </Link>
-                <Link
-                  href="https://www.awwwards.com/academy/course/impress-everyone-with-a-3d-particle-scene-starting-from-bad-models"
-                  passHref
-                >
-                  A Three.js + Blender particle course
-                </Link>
-                <Link
-                  href="https://www.awwwards.com/academy/course/audio-reactive-visuals-with-code"
-                  passHref
-                >
-                  Audio visualizations with P5.js
-                </Link>
-                <Link href="https://www.udemy.com/course/learn-webxr" passHref>
-                  WebXR API basics with Three.js
-                </Link>
+                <ol>
+                  <li>
+                    <Link
+                      href="https://www.awwwards.com/academy/course/flawless-typography-understanding-and-breaking-the-rules"
+                      passHref
+                    >
+                      A typography course
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.awwwards.com/academy/course/impress-everyone-with-a-3d-particle-scene-starting-from-bad-models"
+                      passHref
+                    >
+                      A Three.js + Blender particle course
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://www.awwwards.com/academy/course/audio-reactive-visuals-with-code"
+                      passHref
+                    >
+                      Audio visualizations with P5.js
+                    </Link>
+                  </li>
+                </ol>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -106,9 +110,13 @@ export default function Home() {
                 id={styles.framerMotion}
               >
                 <h2>Framer Motion</h2>
-                <Link href="/framer-motion/001" passHref>
-                  Example 001
-                </Link>
+                <ol>
+                  <li>
+                    <Link href="/framer-motion/001" passHref>
+                      Orchestration + State
+                    </Link>
+                  </li>
+                </ol>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -133,20 +141,27 @@ export default function Home() {
               >
                 <h2>Electron</h2>
                 <Link href="https://github.com/Radlad-io/RadBooth-App" passHref>
-                  <div>
-                    Radbooth
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="16px"
-                      viewBox="0 0 24 24"
-                      width="16px"
-                      fill="#000"
-                    >
-                      <path d="M0 0h24v24H0V0z" fill="none" />
-                      <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-                    </svg>
-                  </div>
+                  <ul>
+                    <li>
+                      <div>
+                        Radbooth
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="16px"
+                          viewBox="0 0 24 24"
+                          width="16px"
+                          fill="#000"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                        </svg>
+                      </div>
+                    </li>
+                  </ul>
                 </Link>
+                <div className={styles.disclaimer}>
+                  <p>⚠️ Special hardware required.</p>
+                </div>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -249,7 +264,7 @@ export default function Home() {
                 </ol>
 
                 <div className={styles.disclaimer}>
-                  <p>⚠️ Warning</p>
+                  <p>⚠️ Special browser required.</p>
                 </div>
               </motion.article>
               <motion.article
@@ -261,6 +276,22 @@ export default function Home() {
                 <Link href="/blender/001" passHref>
                   Example 001 (Physics)
                 </Link>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.afterEffects}
+              >
+                <h2>After Effects</h2>
+                <p>Coming soon.</p>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.sparARStudio}
+              >
+                <h2>Spark AR Studio</h2>
+                <p>Coming soon.</p>
               </motion.article>
             </div>
           </main>
