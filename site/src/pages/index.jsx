@@ -200,60 +200,54 @@ export default function Home() {
                 id={styles.nodejs}
               >
                 <h2>WebXR API</h2>
-                <Link
-                  href="https://experiments-webxr.vercel.app/0-basic_scene.html"
-                  passHref
-                >
-                  Basic Scene
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/1-basic_scene_webxr.html"
-                  passHref
-                >
-                  Basic Scene + WebXR
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/2-more_objects.html"
-                  passHref
-                >
-                  Additional Objects
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/3-more_objects_animated.html"
-                  passHref
-                >
-                  Additional Objects + Animation
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/4-model.html"
-                  passHref
-                >
-                  Model loading
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/5-model_animated.html"
-                  passHref
-                >
-                  Animated Model
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/6-touch_gestures.html"
-                  passHref
-                >
-                  Touch gestures
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/7-hit_testing_only_reticle.html"
-                  passHref
-                >
-                  Hit testing (reticle only)
-                </Link>
-                <Link
-                  href="https://experiments-webxr.vercel.app/8-hit_testing.html"
-                  passHref
-                >
-                  Hit testing
-                </Link>
+                <ol>
+                  <li>
+                    <Link href="/webxr/001" passHref>
+                      Basic Scene
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/002" passHref>
+                      Basic Scene + WebXR
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/003" passHref>
+                      Additional Objects
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/004" passHref>
+                      Additional Objects + Animation
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/005" passHref>
+                      Model loading
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/006" passHref>
+                      Animated Model
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/007" passHref>
+                      Touch gestures
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/008" passHref>
+                      Hit testing (reticle only)
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/webxr/009" passHref>
+                      Hit testing
+                    </Link>
+                  </li>
+                </ol>
+
                 <div className={styles.disclaimer}>
                   <p>⚠️ Warning</p>
                 </div>

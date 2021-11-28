@@ -1,11 +1,14 @@
-@import "../../../styles/mixins";
+@import "../../styles/mixins";
 
 .frame {
+  position: fixed;
+  top: 0;
   width: 100vw;
   height: 100vh;
   border: none;
   padding: 0;
   margin: 0;
+  animation: 1.5s ease-out 0s 1 fadeUp;
 }
 
 .launch {
@@ -24,7 +27,7 @@
     position: absolute;
     bottom: 0;
     background-color: var(--black);
-    border-radius: 5px;
+    border-radius: 2px;
     color: var(--white);
     margin: 20px auto;
     padding: 20px;
@@ -33,5 +36,14 @@
     font-size: 1.2rem;
     color: white;
     padding: 0 0 0 10px;
+  }
+}
+
+@keyframes fadeUp {
+  0% {
+    opacity: 0%;
+  }
+  100% {
+    opacity: 100%;
   }
 }

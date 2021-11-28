@@ -51,6 +51,10 @@
   background-color: var(--gray-200);
   padding: 25px;
   color: black;
+  ol {
+    margin: 0;
+    padding: 12px 20px;
+  }
   div {
     display: flex;
     align-items: center;
