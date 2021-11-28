@@ -117,6 +117,9 @@ export default function Home() {
                     </Link>
                   </li>
                 </ol>
+                <div className={styles.disclaimer}>
+                  <p>🚧 Work in progress</p>
+                </div>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -139,12 +142,15 @@ export default function Home() {
                 className={styles.block}
                 id={styles.electron}
               >
-                <h2>Electron</h2>
-                <Link href="https://github.com/Radlad-io/RadBooth-App" passHref>
-                  <ul>
-                    <li>
+                <h2>RadBooth</h2>
+                <ul>
+                  <li>
+                    <Link
+                      href="https://github.com/Radlad-io/RadBooth-App"
+                      passHref
+                    >
                       <div>
-                        Radbooth
+                        Application
                         <svg
                           xmlns="http://www.w3.org/2000/svg"
                           height="16px"
@@ -156,12 +162,40 @@ export default function Home() {
                           <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
                         </svg>
                       </div>
-                    </li>
-                  </ul>
-                </Link>
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="https://github.com/Radlad-io/radbooth-service"
+                      passHref
+                    >
+                      <div>
+                        Service
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="16px"
+                          viewBox="0 0 24 24"
+                          width="16px"
+                          fill="#000"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                        </svg>
+                      </div>
+                    </Link>
+                  </li>
+                </ul>
                 <div className={styles.disclaimer}>
-                  <p>⚠️ Special hardware required.</p>
+                  <p>🚧 Work in progress</p>
                 </div>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.electron}
+              >
+                <h2>Electron</h2>
+                <p>Coming soon.</p>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -177,21 +211,25 @@ export default function Home() {
                 id={styles.nodejs}
               >
                 <h2>Node.JS</h2>
-                <Link href="https://github.com/Radlad-io/Soundbot" passHref>
-                  <div>
-                    SoundBot
-                    <svg
-                      xmlns="http://www.w3.org/2000/svg"
-                      height="16px"
-                      viewBox="0 0 24 24"
-                      width="16px"
-                      fill="#000"
-                    >
-                      <path d="M0 0h24v24H0V0z" fill="none" />
-                      <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-                    </svg>
-                  </div>
-                </Link>
+                <ul>
+                  <li>
+                    <Link href="https://github.com/Radlad-io/Soundbot" passHref>
+                      <div>
+                        SoundBot
+                        <svg
+                          xmlns="http://www.w3.org/2000/svg"
+                          height="16px"
+                          viewBox="0 0 24 24"
+                          width="16px"
+                          fill="#000"
+                        >
+                          <path d="M0 0h24v24H0V0z" fill="none" />
+                          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
+                        </svg>
+                      </div>
+                    </Link>
+                  </li>
+                </ul>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -284,6 +322,38 @@ export default function Home() {
               >
                 <h2>After Effects</h2>
                 <p>Coming soon.</p>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.sparARStudio}
+              >
+                <h2>Spark AR Studio</h2>
+                <p>Coming soon.</p>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.nodejs}
+              >
+                <h2>Blender</h2>
+                <Link href="/blender/001" passHref>
+                  Example 001 (Physics)
+                </Link>
+              </motion.article>
+              <motion.article
+                variants={articles}
+                className={styles.block}
+                id={styles.fusion360}
+              >
+                <h2>Fusion360 / CAD</h2>
+                <ul>
+                  <li>
+                    <Link href="/cad/3d-printer" passHref>
+                      3D Printer
+                    </Link>
+                  </li>
+                </ul>
               </motion.article>
               <motion.article
                 variants={articles}
