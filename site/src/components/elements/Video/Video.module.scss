@@ -1,5 +1,10 @@
+@import "../../../styles/mixins";
+
 .wrapper {
   video {
     max-width: 95vw;
+    @include for-tablet-portrait-up {
+      max-width: 80vw;
+    }
   }
 }
