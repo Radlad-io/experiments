@@ -15,6 +15,14 @@ export default function Blender001() {
         className={styles.frame}
         src="https://experiments-webxr.vercel.app/1-basic_scene_webxr.html"
       ></iframe>
+      <div className={styles.launch}>
+        <a href="https://experiments-webxr.vercel.app/2-more_objects.html">
+          Launch WebXR Application
+          <i className={`${styles.external} material-icons-outlined`}>
+            open_in_new
+          </i>
+        </a>
+      </div>
     </>
   );
 }
