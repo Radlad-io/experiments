@@ -200,7 +200,63 @@ export default function Home() {
                 id={styles.nodejs}
               >
                 <h2>WebXR API</h2>
-                <p>Coming soon.</p>
+                <Link
+                  href="https://experiments-webxr.vercel.app/0-basic_scene.html"
+                  passHref
+                >
+                  Basic Scene
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/1-basic_scene_webxr.html"
+                  passHref
+                >
+                  Basic Scene + WebXR
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/2-more_objects.html"
+                  passHref
+                >
+                  Additional Objects
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/3-more_objects_animated.html"
+                  passHref
+                >
+                  Additional Objects + Animation
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/4-model.html"
+                  passHref
+                >
+                  Model loading
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/5-model_animated.html"
+                  passHref
+                >
+                  Animated Model
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/6-touch_gestures.html"
+                  passHref
+                >
+                  Touch gestures
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/7-hit_testing_only_reticle.html"
+                  passHref
+                >
+                  Hit testing (reticle only)
+                </Link>
+                <Link
+                  href="https://experiments-webxr.vercel.app/8-hit_testing.html"
+                  passHref
+                >
+                  Hit testing
+                </Link>
+                <div className={styles.disclaimer}>
+                  <p>⚠️ Warning</p>
+                </div>
               </motion.article>
               <motion.article
                 variants={articles}

@@ -10,12 +10,12 @@
     }
   }
   h2 {
-    font-size: 1.3rem;
+    font-size: 1.25rem;
     letter-spacing: 1px;
     text-transform: uppercase;
     color: var(--black);
     margin: 0 0 15px 0;
-    font-weight: 400;
+    font-weight: 900;
   }
   p {
     color: var(--vlack);
@@ -51,19 +51,35 @@
   background-color: var(--gray-200);
   padding: 25px;
   color: black;
-  border-top: 5px solid black;
   div {
     display: flex;
     align-items: center;
-    cursor: pointer;
   }
   a {
     display: block;
     line-height: 1.45rem;
+    cursor: pointer;
   }
   svg {
     display: block;
     margin-left: 8px;
+  }
+}
+
+.disclaimer {
+  margin: 20px -25px -24px;
+  background-color: var(--red-salsa);
+  padding: 0 15px;
+  p {
+    margin-left: 10px;
+    font-size: 0.85rem;
+    color: white;
+    text-decoration: none;
+    line-height: 1.35rem;
+  }
+  a {
+    color: white;
+    display: inline;
   }
 }
 
