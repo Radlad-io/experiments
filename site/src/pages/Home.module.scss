@@ -108,6 +108,7 @@
 #current {
   grid-row: span 3;
   grid-column: span 2;
+  min-height: 350px;
   background-color: var(--black);
   @include for-phone-only {
     grid-column: 1;
@@ -137,5 +138,5 @@
 }
 
 #comingSoon {
-  background-color: var(--gray-600);
+  background-color: var(--gray-700);
 }

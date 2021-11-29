@@ -36,31 +36,29 @@
   }
 }
 
-.info {
-  font-size: 2rem;
-  padding: 0 10px;
-  display: block;
-  cursor: pointer;
-}
-
-.reload {
-  font-size: 2rem;
-  display: block;
-  padding: 0 10px;
-  cursor: pointer;
-  transform-origin: center center;
-  transition: color 300ms ease-in-out, transform 1s;
-  &:hover {
-    transition: color 300ms ease-in-out, transform 1s;
-    transform: rotate(45deg);
-  }
-}
-
 .actions {
   display: flex;
   flex-direction: row;
-  position: absolute;
+  position: fixed;
   z-index: 500;
   right: 30px;
   top: 30px;
+  .info {
+    font-size: 2rem;
+    padding: 0 10px;
+    display: block;
+    cursor: pointer;
+  }
+  .reload {
+    font-size: 2rem;
+    display: block;
+    padding: 0 10px;
+    cursor: pointer;
+    transform-origin: center center;
+    transition: color 300ms ease-in-out, transform 1s;
+    &:hover {
+      transition: color 300ms ease-in-out, transform 1s;
+      transform: rotate(45deg);
+    }
+  }
 }
