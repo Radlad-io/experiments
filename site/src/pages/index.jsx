@@ -1,16 +1,18 @@
+import { useRouter } from "next/router";
 import styles from "./Home.module.scss";
 import Link from "next/link";
 import { motion } from "framer-motion";
 
 import Container from "@components/layout/Container/Container";
 import Layout from "@components/utility/Metadata";
+import router from "next/router";
 
 const pageWrapper = {
   initial: {
     opacity: 0,
     transition: {
       delayChildren: 0.15,
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
       staggerDirection: -1,
     },
   },
@@ -20,6 +22,14 @@ const pageWrapper = {
       delayChildren: 0.15,
       staggerChildren: 0.05,
       staggerDirection: 1,
+    },
+  },
+  out: {
+    opacity: 0,
+    transition: {
+      when: "afterChildren",
+      staggerChildren: 0.05,
+      staggerDirection: -1,
     },
   },
 };
@@ -39,6 +49,13 @@ const heading = {
       ease: "easeInOut",
     },
   },
+  out: {
+    opacity: 0,
+    y: 15,
+    transition: {
+      ease: "easeInOut",
+    },
+  },
 };
 
 const articles = {
@@ -51,17 +68,27 @@ const articles = {
   },
   in: {
     opacity: 1,
-    y: [15, -2, 0],
+    y: [15, -4, 0],
     transition: {
+      duration: 0.45,
+      ease: "easeInOut",
+    },
+  },
+  out: {
+    opacity: 0,
+    y: 15,
+    transition: {
+      duration: 0.35,
       ease: "easeInOut",
     },
   },
 };
 
 export default function Home() {
+  const router = useRouter();
   return (
     <motion.div
-      exit={"inital"}
+      exit={"out"}
       initial={"initial"}
       animate={"in"}
       variants={pageWrapper}
@@ -77,7 +104,7 @@ export default function Home() {
                 id={styles.current}
               >
                 <h2>Currently working on</h2>
-                <ol>
+                <ul>
                   <li>
                     <Link
                       href="https://www.awwwards.com/academy/course/flawless-typography-understanding-and-breaking-the-rules"
@@ -102,7 +129,7 @@ export default function Home() {
                       Audio visualizations with P5.js
                     </Link>
                   </li>
-                </ol>
+                </ul>
               </motion.article>
               <motion.article
                 variants={articles}
@@ -110,56 +137,57 @@ export default function Home() {
                 id={styles.framerMotion}
               >
                 <h2>Framer Motion</h2>
-                <ol>
+                <ul>
                   <li>
-                    <Link href="/framer-motion/001" passHref>
+                    <Link href="/framer-motion/001" passHref scroll={false}>
                       Orchestration + State
                     </Link>
                   </li>
                   <li>
-                    <Link href="/framer-motion/001" passHref>
+                    <Link href="/framer-motion/001" passHref scroll={false}>
                       Adding Masks
                     </Link>
                   </li>
                   <li>
-                    <Link href="/framer-motion/001" passHref>
+                    <Link href="/framer-motion/001" passHref scroll={false}>
                       Keyframes
                     </Link>
                   </li>
                   <li>
-                    <Link href="/framer-motion/002" passHref>
+                    <Link href="/framer-motion/002" passHref scroll={false}>
                       Intersection Observer
                     </Link>
                   </li>
                   <li>
-                    <Link href="/framer-motion/003" passHref>
+                    <Link href="/framer-motion/003" passHref scroll={false}>
                       Parallax effect
                     </Link>
                   </li>
                   <li>
-                    <Link href="/framer-motion/003" passHref>
+                    <Link href="/framer-motion/003" passHref scroll={false}>
                       Custom cursor
                     </Link>
                   </li>
                   <li>
-                    <Link href="/framer-motion/001" passHref>
+                    <Link href="/framer-motion/001" passHref scroll={false}>
                       Drag + Drop
                     </Link>
                   </li>
                   <li>
-                    <Link href="/framer-motion/001" passHref>
+                    <Link href="/framer-motion/001" passHref scroll={false}>
                       Shared layout
                     </Link>
                   </li>
-                </ol>
+                </ul>
                 <div className={styles.disclaimer}>
-                  <p>🚧 Work in progress</p>
+                  <i className={`material-icons-outlined`}>construction</i>
+                  <p>Work in progress</p>
                 </div>
               </motion.article>
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.threeJS}
+                id={styles.comingSoon}
               >
                 <h2>Three.js</h2>
                 <p>Coming soon.</p>
@@ -167,7 +195,7 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.aframe}
+                id={styles.comingSoon}
               >
                 <h2>AFrame</h2>
                 <p>Coming soon.</p>
@@ -183,51 +211,36 @@ export default function Home() {
                     <Link
                       href="https://github.com/Radlad-io/RadBooth-App"
                       passHref
+                      scroll={false}
                     >
-                      <div>
+                      <a>
                         Application
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="16px"
-                          viewBox="0 0 24 24"
-                          width="16px"
-                          fill="#000"
-                        >
-                          <path d="M0 0h24v24H0V0z" fill="none" />
-                          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-                        </svg>
-                      </div>
+                        <i className={`material-icons-outlined`}>open_in_new</i>
+                      </a>
                     </Link>
                   </li>
                   <li>
                     <Link
                       href="https://github.com/Radlad-io/radbooth-service"
                       passHref
+                      scroll={false}
                     >
-                      <div>
+                      <a>
                         Service
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="16px"
-                          viewBox="0 0 24 24"
-                          width="16px"
-                          fill="#000"
-                        >
-                          <path d="M0 0h24v24H0V0z" fill="none" />
-                          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-                        </svg>
-                      </div>
+                        <i className={`material-icons-outlined`}>open_in_new</i>
+                      </a>
                     </Link>
                   </li>
                 </ul>
                 <div className={styles.disclaimer}>
-                  <p>🚧 Work in progress</p>
+                  <i className={`material-icons-outlined`}>construction</i>
+                  <p>Work in progress</p>
                 </div>
               </motion.article>
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.electron}
+                id={styles.comingSoon}
               >
                 <h2>Electron</h2>
                 <p>Coming soon.</p>
@@ -235,7 +248,7 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.reactNative}
+                id={styles.comingSoon}
               >
                 <h2>React Native</h2>
                 <p>Coming soon.</p>
@@ -251,16 +264,7 @@ export default function Home() {
                     <Link href="https://github.com/Radlad-io/Soundbot" passHref>
                       <div>
                         SoundBot
-                        <svg
-                          xmlns="http://www.w3.org/2000/svg"
-                          height="16px"
-                          viewBox="0 0 24 24"
-                          width="16px"
-                          fill="#000"
-                        >
-                          <path d="M0 0h24v24H0V0z" fill="none" />
-                          <path d="M19 19H5V5h7V3H5c-1.11 0-2 .9-2 2v14c0 1.1.89 2 2 2h14c1.1 0 2-.9 2-2v-7h-2v7zM14 3v2h3.59l-9.83 9.83 1.41 1.41L19 6.41V10h2V3h-7z" />
-                        </svg>
+                        <i className={`material-icons-outlined`}>open_in_new</i>
                       </div>
                     </Link>
                   </li>
@@ -269,7 +273,7 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.nodejs}
+                id={styles.comingSoon}
               >
                 <h2>TensorFlow.JS</h2>
                 <p>Coming soon.</p>
@@ -277,7 +281,7 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.nodejs}
+                id={styles.comingSoon}
               >
                 <h2>P5.JS</h2>
                 <p>Coming soon.</p>
@@ -288,56 +292,57 @@ export default function Home() {
                 id={styles.webXr}
               >
                 <h2>WebXR API</h2>
-                <ol>
+                <ul>
                   <li>
-                    <Link href="/webxr/001" passHref>
+                    <Link href="/webxr/001" passHref scroll={false}>
                       Basic Scene
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/002" passHref>
+                    <Link href="/webxr/002" passHref scroll={false}>
                       Basic Scene + WebXR
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/003" passHref>
+                    <Link href="/webxr/003" passHref scroll={false}>
                       Additional Objects
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/004" passHref>
+                    <Link href="/webxr/004" passHref scroll={false}>
                       Additional Objects + Animation
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/005" passHref>
+                    <Link href="/webxr/005" passHref scroll={false}>
                       Model loading
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/006" passHref>
+                    <Link href="/webxr/006" passHref scroll={false}>
                       Animated Model
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/007" passHref>
+                    <Link href="/webxr/007" passHref scroll={false}>
                       Touch gestures
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/008" passHref>
+                    <Link href="/webxr/008" passHref scroll={false}>
                       Hit testing (reticle only)
                     </Link>
                   </li>
                   <li>
-                    <Link href="/webxr/009" passHref>
+                    <Link href="/webxr/009" passHref scroll={false}>
                       Hit testing
                     </Link>
                   </li>
-                </ol>
+                </ul>
 
                 <div className={styles.disclaimer}>
-                  <p>⚠️ Special browser required.</p>
+                  <i className={`material-icons-outlined`}>warning</i>
+                  <p>Requires special browser</p>
                 </div>
               </motion.article>
               <motion.article
@@ -346,14 +351,18 @@ export default function Home() {
                 id={styles.nodejs}
               >
                 <h2>Blender</h2>
-                <Link href="/blender/001" passHref>
-                  Example 001 (Physics)
-                </Link>
+                <ul>
+                  <li>
+                    <Link href="/blender/001" passHref scroll={false}>
+                      Physics animation
+                    </Link>
+                  </li>
+                </ul>
               </motion.article>
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.afterEffects}
+                id={styles.comingSoon}
               >
                 <h2>After Effects</h2>
                 <p>Coming soon.</p>
@@ -361,7 +370,7 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.sparARStudio}
+                id={styles.comingSoon}
               >
                 <h2>Spark AR Studio</h2>
                 <p>Coming soon.</p>
@@ -374,7 +383,7 @@ export default function Home() {
                 <h2>Fusion360 / CAD</h2>
                 <ul>
                   <li>
-                    <Link href="/cad/3d-printer" passHref>
+                    <Link href="/cad/3d-printer" passHref scroll={false}>
                       3D Printer
                     </Link>
                   </li>
