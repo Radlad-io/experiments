@@ -8,7 +8,7 @@ export default function ReturnButton({ title, info, animate, setAnimate }) {
   const [modal, setModal] = useState(false);
   return (
     <div className={styles.header}>
-      <Link href="/" passHref>
+      <Link href="/" passHref scroll={false}>
         <div className={`${styles.btn} noselect`}>
           <i className={`material-icons`}>arrow_back</i>
           <p>Return</p>
