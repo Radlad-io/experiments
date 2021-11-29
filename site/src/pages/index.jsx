@@ -18,7 +18,7 @@ const pageWrapper = {
     opacity: 1,
     transition: {
       delayChildren: 0.15,
-      staggerChildren: 0.1,
+      staggerChildren: 0.05,
       staggerDirection: 1,
     },
   },
@@ -51,7 +51,7 @@ const articles = {
   },
   in: {
     opacity: 1,
-    y: 0,
+    y: [15, -2, 0],
     transition: {
       ease: "easeInOut",
     },
@@ -114,6 +114,41 @@ export default function Home() {
                   <li>
                     <Link href="/framer-motion/001" passHref>
                       Orchestration + State
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/framer-motion/001" passHref>
+                      Adding Masks
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/framer-motion/001" passHref>
+                      Keyframes
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/framer-motion/002" passHref>
+                      Intersection Observer
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/framer-motion/003" passHref>
+                      Parallax effect
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/framer-motion/003" passHref>
+                      Custom cursor
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/framer-motion/001" passHref>
+                      Drag + Drop
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/framer-motion/001" passHref>
+                      Shared layout
                     </Link>
                   </li>
                 </ol>
@@ -250,7 +285,7 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.nodejs}
+                id={styles.webXr}
               >
                 <h2>WebXR API</h2>
                 <ol>
@@ -334,16 +369,6 @@ export default function Home() {
               <motion.article
                 variants={articles}
                 className={styles.block}
-                id={styles.nodejs}
-              >
-                <h2>Blender</h2>
-                <Link href="/blender/001" passHref>
-                  Example 001 (Physics)
-                </Link>
-              </motion.article>
-              <motion.article
-                variants={articles}
-                className={styles.block}
                 id={styles.fusion360}
               >
                 <h2>Fusion360 / CAD</h2>
@@ -354,14 +379,6 @@ export default function Home() {
                     </Link>
                   </li>
                 </ul>
-              </motion.article>
-              <motion.article
-                variants={articles}
-                className={styles.block}
-                id={styles.sparARStudio}
-              >
-                <h2>Spark AR Studio</h2>
-                <p>Coming soon.</p>
               </motion.article>
             </div>
           </main>

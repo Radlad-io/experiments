@@ -1,8 +1,15 @@
 @import "../../../styles/mixins";
 
+.flex {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+}
+
 .heading {
-  font-family: "IBM Plex Mono", monospace;
   display: block;
+  font-family: "IBM Plex Mono", monospace;
   margin: auto;
   font-size: 4rem;
   letter-spacing: 0.08rem;
@@ -10,13 +17,6 @@
   @include for-phone-only {
     font-size: 2.5rem;
   }
-}
-
-.flex {
-  height: calc(100vh - 150px);
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .first {

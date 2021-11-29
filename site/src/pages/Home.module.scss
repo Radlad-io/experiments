@@ -42,6 +42,9 @@
     grid-template-columns: repeat(2, 1fr);
   }
   @include for-tablet-landscape-up {
+    grid-template-columns: repeat(3, 1fr);
+  }
+  @include for-desktop-up {
     grid-template-columns: repeat(4, 1fr);
   }
 }
@@ -115,3 +118,11 @@
 // #framerMotion {
 //   grid-row: span 2;
 // }
+
+#webXr,
+#framerMotion {
+  grid-row: span 2;
+  @include for-phone-only {
+    grid-column: 1;
+  }
+}
