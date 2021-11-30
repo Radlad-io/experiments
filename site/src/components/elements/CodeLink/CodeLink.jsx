@@ -1,9 +1,17 @@
 import styles from "./CodeLink.module.scss";
 import Link from "next/link";
+import { motion } from "framer-motion";
+import * as variants from "./CodeLink.motion";
 
 function CodeLink({ link }) {
   return (
-    <div className={styles.footer}>
+    <motion.div
+      variants={variants.wrapper}
+      initial="initial"
+      animate="in"
+      exit="out"
+      className={styles.footer}
+    >
       <p>
         💻 Project files can be found{" "}
         <a>
@@ -12,7 +20,7 @@ function CodeLink({ link }) {
           </Link>
         </a>
       </p>
-    </div>
+    </motion.div>
   );
 }
 

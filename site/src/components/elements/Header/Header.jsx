@@ -1,43 +1,57 @@
 import { useState } from "react";
-import styles from "./Header.module.scss";
 import Link from "next/link";
+import styles from "./Header.module.scss";
+import { motion } from "framer-motion";
+import * as variants from "./Header.motion";
 
 import Modal from "@components/elements/Modal/Modal";
 
 export default function ReturnButton({ title, info, animate, setAnimate }) {
   const [modal, setModal] = useState(false);
   return (
-    <div className={styles.header}>
+    <motion.div
+      className={styles.header}
+      variants={variants.wrapper}
+      initial="initial"
+      animate="in"
+      exit="out"
+    >
       <Link href="/" passHref scroll={false}>
-        <div className={`${styles.btn} noselect`}>
-          <i className={`material-icons`}>arrow_back</i>
-          <p>Return</p>
-        </div>
+        <motion.div
+          className={`${styles.btn} noselect`}
+          variants={variants.btn}
+        >
+          <motion.i className={`material-icons`}>arrow_back</motion.i>
+          <motion.p>Return</motion.p>
+        </motion.div>
       </Link>
+
       <div className={`${styles.actions} noselect`}>
         {title && (
-          <i
+          <motion.i
+            variants={variants.actions}
             onClick={() => {
               setModal(!modal);
             }}
             className={`${styles.info} material-icons-outlined`}
           >
             text_snippet
-          </i>
+          </motion.i>
         )}
 
         {setAnimate && (
-          <i
+          <motion.i
+            variants={variants.actions}
             onClick={() => {
               setAnimate(!animate);
             }}
             className={`${styles.reload} material-icons`}
           >
             sync
-          </i>
+          </motion.i>
         )}
       </div>
       <Modal title={title} info={info} isOpen={modal} />
-    </div>
+    </motion.div>
   );
 }

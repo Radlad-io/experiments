@@ -4,7 +4,7 @@ import { motion } from "framer-motion";
 import * as variants from "@motion/framer-motion/001.motion";
 
 import Header from "@components/elements/Header/Header";
-import CodeLink from "@components/elements/CodeLink/CodeLink";
+import CodeLink from "@components/elements/CodeLink/CodeLink.jsx";
 
 export default function Animation001() {
   const [animate, setAnimate] = useState(true);
@@ -19,7 +19,11 @@ export default function Animation001() {
       <div className={styles.wrapper}>
         <div className={styles.flex}>
           <h1 className={styles.heading}>
-            <motion.div initial="inital" animate={animate ? "in" : "out"}>
+            <motion.div
+              initial="inital"
+              animate={animate ? "in" : "out"}
+              exit="out"
+            >
               <span className={styles.first}>
                 <motion.span variants={variants.FirstVariants}>
                   <motion.span variants={variants.FirstLetterVariants}>
