@@ -278,13 +278,43 @@ export default function Home() {
                 <h2>TensorFlow.JS</h2>
                 <p>Coming soon.</p>
               </motion.article>
-              <motion.article
-                variants={articles}
-                className={styles.block}
-                id={styles.comingSoon}
-              >
+              <motion.article variants={articles} className={styles.block}>
                 <h2>P5.JS</h2>
-                <p>Coming soon.</p>
+
+                <ul>
+                  <li>
+                    <Link
+                      href="/p5/01_simple-canvas-drawing"
+                      passHref
+                      scroll={false}
+                    >
+                      Simple Canvas
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/p5/02_input-interactions"
+                      passHref
+                      scroll={false}
+                    >
+                      User Interactions
+                    </Link>
+                  </li>
+                  <li>
+                    <Link href="/p5/03_audio_input" passHref scroll={false}>
+                      Audio Input
+                    </Link>
+                  </li>
+                  <li>
+                    <Link
+                      href="/p5/04_static_audio_waveform"
+                      passHref
+                      scroll={false}
+                    >
+                      Audio Waveform
+                    </Link>
+                  </li>
+                </ul>
               </motion.article>
               <motion.article
                 variants={articles}
