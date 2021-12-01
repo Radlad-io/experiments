@@ -10,20 +10,32 @@ function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CENTER);
   audio.setVolume(0.05);
-  audio.play();
   amp = new p5.Amplitude();
+  textSize(32);
+  textAlign(CENTER);
+  textStyle(NORMAL);
+  textFont("IBM Plex Mono");
 }
 
 function draw() {
   noStroke();
-  background(225, 225, 225);
+  background(255, 255, 255);
   const volume = amp.getLevel();
   const mapVolume = map(volume, 0, 0.05, 0, 1000);
-  const mapColor = map(volume, 0, 0.05, 255, 175);
+  const mapColor = map(volume, 0, 0.05, 125, 0);
 
   fill(mapColor, mapColor, mapColor);
   translate(width / 2, height / 2);
   rect(0, 0, mapVolume, 500);
+
+  push();
+  fill(0, 0, 0);
+  text(
+    !audio.isPlaying() ? "Click to play" : "Click to pause",
+    0,
+    windowHeight / 2 - 100
+  );
+  pop();
 }
 
 function mouseClicked() {
@@ -32,6 +44,7 @@ function mouseClicked() {
   } else {
     audio.play();
   }
+  return;
 }
 
 function windowResized() {

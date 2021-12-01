@@ -417,6 +417,11 @@ export default function Home() {
                       3D Printer
                     </Link>
                   </li>
+                  <li>
+                    <Link href="/cad/radbooth" passHref scroll={false}>
+                      Radbooth
+                    </Link>
+                  </li>
                 </ul>
               </motion.article>
             </div>

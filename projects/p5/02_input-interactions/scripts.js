@@ -8,11 +8,12 @@ function preload() {}
 function setup() {
   createCanvas(windowWidth, windowHeight);
   rectMode(CENTER);
+  fill(0, 0, 0);
 }
 
 function draw() {
   noStroke();
-  background(225, 225, 225);
+  background(255, 255, 255);
 
   const mapBoth = map(mouseY + mouseX, 0, width + height, 0, 500);
   translate(width / 2, height / 2);
@@ -44,7 +45,7 @@ function keyPressed() {
 }
 
 function mouseClicked() {
-  fill(random(0, 255), random(0, 255), random(0, 255));
+  fill(random(0, 225), random(0, 225), random(0, 225));
 }
 
 function windowResized() {
