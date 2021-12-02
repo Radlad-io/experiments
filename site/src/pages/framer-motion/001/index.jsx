@@ -16,66 +16,93 @@ export default function Animation001() {
         animate={animate}
         setAnimate={setAnimate}
       />
-      <div className={styles.wrapper}>
+      <motion.div
+        className={styles.wrapper}
+        initial="inital"
+        animate={animate ? "in" : "out"}
+        exit="out"
+      >
         <div className={styles.flex}>
           <h1 className={styles.heading}>
-            <motion.div
-              initial="inital"
-              animate={animate ? "in" : "out"}
-              exit="out"
-            >
-              <span className={styles.first}>
-                <motion.span variants={variants.FirstVariants}>
-                  <motion.span variants={variants.FirstLetterVariants}>
-                    A
-                  </motion.span>
-                  <motion.span variants={variants.FirstLetterVariants}>
-                    r
-                  </motion.span>
-                  <motion.span variants={variants.FirstLetterVariants}>
-                    t
-                  </motion.span>
-                  <motion.span variants={variants.FirstLetterVariants}>
-                    i
-                  </motion.span>
-                  <motion.span variants={variants.FirstLetterVariants}>
-                    c
-                  </motion.span>
-                  <motion.span variants={variants.FirstLetterVariants}>
-                    l
-                  </motion.span>
-                  <motion.span variants={variants.FirstLetterVariants}>
-                    e
-                  </motion.span>
+            <motion.span variants={variants.FirstVariants}>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>T</motion.span>
+                <motion.span variants={variants.letterVariants}>h</motion.span>
+                <motion.span variants={variants.letterVariants}>
+                  e&nbsp;
                 </motion.span>
               </span>
-              <span className={styles.last}>
-                <motion.span variants={variants.LastVariants}>
-                  <motion.span variants={variants.SecondLetterVariants}>
-                    T
-                  </motion.span>
-                  <motion.span variants={variants.SecondLetterVariants}>
-                    i
-                  </motion.span>
-                  <motion.span variants={variants.SecondLetterVariants}>
-                    t
-                  </motion.span>
-                  <motion.span variants={variants.SecondLetterVariants}>
-                    l
-                  </motion.span>
-                  <motion.span variants={variants.SecondLetterVariants}>
-                    e
-                  </motion.span>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>u</motion.span>
+                <motion.span variants={variants.letterVariants}>n</motion.span>
+                <motion.span variants={variants.letterVariants}>i</motion.span>
+                <motion.span variants={variants.letterVariants}>v</motion.span>
+                <motion.span variants={variants.letterVariants}>e</motion.span>
+                <motion.span variants={variants.letterVariants}>r</motion.span>
+                <motion.span variants={variants.letterVariants}>s</motion.span>
+                <motion.span variants={variants.letterVariants}>
+                  e&nbsp;
                 </motion.span>
               </span>
-              <motion.div
-                className={styles.underline}
-                variants={variants.UnderlineVariants}
-              />
-            </motion.div>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>i</motion.span>
+                <motion.span variants={variants.letterVariants}>
+                  s&nbsp;
+                </motion.span>
+              </span>
+              <motion.span variants={variants.letterVariants}>
+                a&nbsp;
+              </motion.span>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>b</motion.span>
+                <motion.span variants={variants.letterVariants}>i</motion.span>
+                <motion.span variants={variants.letterVariants}>
+                  g&nbsp;
+                </motion.span>
+              </span>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>p</motion.span>
+                <motion.span variants={variants.letterVariants}>l</motion.span>
+                <motion.span variants={variants.letterVariants}>a</motion.span>
+                <motion.span variants={variants.letterVariants}>c</motion.span>
+                <motion.span variants={variants.letterVariants}>e</motion.span>
+                <motion.span variants={variants.letterVariants}>
+                  ,&nbsp;
+                </motion.span>
+              </span>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>p</motion.span>
+                <motion.span variants={variants.letterVariants}>e</motion.span>
+                <motion.span variants={variants.letterVariants}>r</motion.span>
+                <motion.span variants={variants.letterVariants}>h</motion.span>
+                <motion.span variants={variants.letterVariants}>a</motion.span>
+                <motion.span variants={variants.letterVariants}>p</motion.span>
+                <motion.span variants={variants.letterVariants}>
+                  s&nbsp;
+                </motion.span>
+              </span>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>t</motion.span>
+                <motion.span variants={variants.letterVariants}>h</motion.span>
+                <motion.span variants={variants.letterVariants}>
+                  e&nbsp;
+                </motion.span>
+              </span>
+              <span className={styles.noWrap}>
+                <motion.span variants={variants.letterVariants}>b</motion.span>
+                <motion.span variants={variants.letterVariants}>i</motion.span>
+                <motion.span variants={variants.letterVariants}>g</motion.span>
+                <motion.span variants={variants.letterVariants}>g</motion.span>
+                <motion.span variants={variants.letterVariants}>e</motion.span>
+                <motion.span variants={variants.letterVariants}>s</motion.span>
+                <motion.span variants={variants.letterVariants}>t</motion.span>
+                <motion.span variants={variants.letterVariants}>.</motion.span>
+              </span>
+            </motion.span>
           </h1>
+          <motion.p variants={variants.cite}>Kurt Vonnegut</motion.p>
         </div>
-      </div>
+      </motion.div>
       <CodeLink link="https://github.com/Radlad-io/experiments/tree/main/site/src/pages/framer-motion/001" />
     </>
   );

@@ -6,23 +6,23 @@ export const FirstVariants = {
     transition: {
       delayChildren: 0.15,
       staggerChildren: 0.07,
-      staggerDirection: 1,
+      staggerDirection: -1,
     },
   },
   in: {
     opacity: 1,
     transition: {
       delayChildren: 0.15,
-      staggerChildren: 0.07,
-      staggerDirection: -1,
+      staggerChildren: 0.035,
+      staggerDirection: 1,
     },
   },
   out: {
     opacity: 1,
     transition: {
       delayChildren: 0.15,
-      staggerChildren: 0.07,
-      staggerDirection: 1,
+      staggerChildren: 0.035,
+      staggerDirection: -1,
     },
   },
 };
@@ -54,7 +54,7 @@ export const LastVariants = {
   },
 };
 
-export const FirstLetterVariants = {
+export const letterVariants = {
   inital: {
     y: 150,
     opacity: 0,
@@ -72,41 +72,17 @@ export const FirstLetterVariants = {
   },
 };
 
-export const SecondLetterVariants = {
+export const cite = {
   inital: {
-    y: 150,
     opacity: 0,
     transition: { duration: 1 },
   },
   in: {
-    y: [150, -15, 0],
     opacity: 1,
-    transition: { duration: 1 },
+    transition: { delay: 2, duration: 1 },
   },
   out: {
-    y: [0, -15, 150],
     opacity: 0,
     transition: { duration: 1 },
-  },
-};
-
-export const UnderlineVariants = {
-  inital: {
-    width: "0%",
-    opacity: 0,
-    transition: { duration: 1, delay: 1.2, ...transition },
-  },
-  in: {
-    width: "96%",
-    opacity: 1,
-    transition: { duration: 1, delay: 0.75, ...transition },
-  },
-  out: {
-    width: "0%",
-    opacity: 0,
-    transition: {
-      duration: 1.2,
-      ...transition,
-    },
   },
 };
