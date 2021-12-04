@@ -78,6 +78,15 @@ function mouseClicked() {
   return;
 }
 
+function touchStarted() {
+  if (audio.isPlaying()) {
+    audio.pause();
+  } else {
+    audio.play();
+  }
+  return;
+}
+
 function windowResized() {
   resizeCanvas(windowWidth, windowHeight);
 }
