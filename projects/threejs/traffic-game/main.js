@@ -29,7 +29,7 @@ const storeUserHighScore = (score) => {
 
 // Queries localStorage for a stored high score
 let storedUserHighScore = localStorage.getItem("highScore");
-if (storedUserHighScore == null || isNaN || undefined) {
+if (!storedUserHighScore) {
   storeUserHighScore(0);
 }
 
@@ -185,10 +185,9 @@ function reset() {
   playerAngleMoved = 0;
   if (score > userHighScore) {
     userHighScore = score;
-    storeUserHighScore(score);
+    storeUserHighScore(userHighScore);
     highScoreElement.innerText = `High Score: ${userHighScore}`;
   }
-  console.log(`userHighScore: ${userHighScore}`);
   score = 0;
   scoreElement.innerText = "Press UP";
 
