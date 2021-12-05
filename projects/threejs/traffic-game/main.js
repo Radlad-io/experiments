@@ -21,6 +21,19 @@ import "./style.css";
 import * as THREE from "three";
 
 window.focus(); // Capture keys right away (by default focus is on editor)
+// localStorage.clear();
+const setUserHighScore = (score) => {
+  localStorage.setItem("highScore", `${score}`);
+};
+
+const storedUserHighScore = localStorage.getItem("highScore");
+if (storedUserHighScore == null || isNaN) {
+  localStorage.setItem("highScore", "0");
+}
+
+let userHighScore = parseInt(storedUserHighScore);
+const highScoreElement = document.getElementById("highScore");
+highScoreElement.innerText = `High Score: ${userHighScore}`;
 
 // Pick a random value from an array
 function pickRandom(array) {
@@ -101,12 +114,6 @@ const resultsElement = document.getElementById("results");
 const accelerateButton = document.getElementById("accelerate");
 const decelerateButton = document.getElementById("decelerate");
 
-setTimeout(() => {
-  if (ready) instructionsElement.style.opacity = 1;
-  buttonsElement.style.opacity = 1;
-  youtubeLogo.style.opacity = 1;
-}, 4000);
-
 // Initialize ThreeJs
 // Set up camera
 const aspectRatio = window.innerWidth / window.innerHeight;
@@ -173,6 +180,12 @@ reset();
 function reset() {
   // Reset position and score
   playerAngleMoved = 0;
+  if (score > userHighScore) {
+    userHighScore = score;
+    setUserHighScore(score);
+    highScoreElement.innerText = `High Score: ${userHighScore}`;
+  }
+  console.log(`userHighScore: ${userHighScore}`);
   score = 0;
   scoreElement.innerText = "Press UP";
 

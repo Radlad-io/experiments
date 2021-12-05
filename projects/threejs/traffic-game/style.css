@@ -23,6 +23,13 @@ a:visited {
   color: inherit;
 }
 
+#highScore {
+  position: fixed;
+  margin: 20px;
+  width: 100vw;
+  text-align: center;
+}
+
 #score {
   position: absolute;
   font-family: "Press Start 2P", cursive;
@@ -30,7 +37,7 @@ a:visited {
   color: white;
   transform: translate(-50%, -50%);
   opacity: 0.9;
-  max-width: 100px;
+  max-width: 125px;
   text-align: center;
   line-height: 1.6em;
 }
