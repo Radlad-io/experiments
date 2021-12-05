@@ -184,13 +184,19 @@ export default function Home() {
                   <p>Work in progress</p>
                 </div>
               </motion.article>
-              <motion.article
-                variants={articles}
-                className={styles.block}
-                id={styles.comingSoon}
-              >
+              <motion.article variants={articles} className={styles.block}>
                 <h2>Three.js</h2>
-                <p>Coming soon.</p>
+                <ul>
+                  <li>
+                    <Link
+                      href="https://experiments-traffic-game.vercel.app/"
+                      passHref
+                      scroll={false}
+                    >
+                      Traffic Game
+                    </Link>
+                  </li>
+                </ul>
               </motion.article>
               <motion.article
                 variants={articles}

@@ -1,7 +1,7 @@
 
 Todo:
   ☐ Add headlights
-  ☐ Create a convertivle car model for the players car
+  ☐ Create a convertible car model for the players car
     Makes use of ThreeBSP to create subtractive shapes
     https://stackoverflow.com/questions/59802750/how-create-window-holes-or-subtract-geometry-in-three-js
   ☐ Create session storage to maintain users highscore
