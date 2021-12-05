@@ -21,16 +21,19 @@ import "./style.css";
 import * as THREE from "three";
 
 window.focus(); // Capture keys right away (by default focus is on editor)
-// localStorage.clear();
-const setUserHighScore = (score) => {
+
+// Stores high score in the browser's localStorage
+const storeUserHighScore = (score) => {
   localStorage.setItem("highScore", `${score}`);
 };
 
-const storedUserHighScore = localStorage.getItem("highScore");
-if (storedUserHighScore == null || isNaN) {
-  localStorage.setItem("highScore", "0");
+// Queries localStorage for a stored high score
+let storedUserHighScore = localStorage.getItem("highScore");
+if (storedUserHighScore == null || isNaN || undefined) {
+  storeUserHighScore(0);
 }
 
+// Stores high score in application and adds it to UI
 let userHighScore = parseInt(storedUserHighScore);
 const highScoreElement = document.getElementById("highScore");
 highScoreElement.innerText = `High Score: ${userHighScore}`;
@@ -134,7 +137,7 @@ camera.lookAt(0, 0, 0);
 
 const scene = new THREE.Scene();
 
-const playerCar = Car();
+const playerCar = Convertible();
 scene.add(playerCar);
 
 renderMap(cameraWidth, cameraHeight * 2); // The map height is higher because we look at the map from an angle
@@ -182,7 +185,7 @@ function reset() {
   playerAngleMoved = 0;
   if (score > userHighScore) {
     userHighScore = score;
-    setUserHighScore(score);
+    storeUserHighScore(score);
     highScoreElement.innerText = `High Score: ${userHighScore}`;
   }
   console.log(`userHighScore: ${userHighScore}`);
@@ -552,7 +555,8 @@ function renderMap(mapWidth, mapHeight) {
 
   if (config.trees) {
     const tree1 = Tree();
-    tree1.position.x = arcCenterX * 1.3;
+    tree1.position.x = -arcCenterX * 1.5;
+    tree1.position.y = -arcCenterX * 1.8;
     scene.add(tree1);
 
     const tree2 = Tree();
@@ -614,11 +618,6 @@ function renderMap(mapWidth, mapHeight) {
     tree13.position.x = -arcCenterX * 0.7;
     tree13.position.y = -arcCenterX * 2.4;
     scene.add(tree13);
-
-    const tree14 = Tree();
-    tree14.position.x = -arcCenterX * 1.5;
-    tree14.position.y = -arcCenterX * 1.8;
-    scene.add(tree14);
   }
 }
 
@@ -693,6 +692,62 @@ function Car() {
   cabin.castShadow = true;
   cabin.receiveShadow = true;
   car.add(cabin);
+
+  const backWheel = new Wheel();
+  backWheel.position.x = -18;
+  car.add(backWheel);
+
+  const frontWheel = new Wheel();
+  frontWheel.position.x = 18;
+  car.add(frontWheel);
+
+  if (config.showHitZones) {
+    car.userData.hitZone1 = HitZone();
+    car.userData.hitZone2 = HitZone();
+  }
+
+  return car;
+}
+
+function Convertible() {
+  const car = new THREE.Group();
+
+  const color = 0xfd4058;
+
+  const main = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(60, 30, 15),
+    new THREE.MeshLambertMaterial({ color })
+  );
+  main.position.z = 12;
+  main.castShadow = true;
+  main.receiveShadow = true;
+  car.add(main);
+
+  const carFrontTexture = getCarFrontTexture();
+  carFrontTexture.center = new THREE.Vector2(0.5, 0.5);
+  carFrontTexture.rotation = Math.PI / 2;
+
+  const carBackTexture = getCarFrontTexture();
+  carBackTexture.center = new THREE.Vector2(0.5, 0.5);
+  carBackTexture.rotation = -Math.PI / 2;
+
+  const windshield = new THREE.Mesh(new THREE.BoxBufferGeometry(4, 24, 12), [
+    new THREE.MeshLambertMaterial({ map: carFrontTexture }),
+    new THREE.MeshLambertMaterial({ map: carBackTexture }),
+    new THREE.MeshLambertMaterial({ color: 0xffffff }), // top
+    new THREE.MeshLambertMaterial({ color: 0xffffff }), // bottom
+    new THREE.MeshLambertMaterial({ color: 0xffffff }), // top
+    new THREE.MeshLambertMaterial({ color: 0xffffff }), // bottom
+  ]);
+
+  windshield.position.x = 5;
+  windshield.position.y = 0;
+  windshield.position.z = 25.5;
+  // windshield.position.set(0, 0, 35.5);
+
+  windshield.castShadow = true;
+  windshield.receiveShadow = true;
+  car.add(windshield);
 
   const backWheel = new Wheel();
   backWheel.position.x = -18;
