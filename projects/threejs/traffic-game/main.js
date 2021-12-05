@@ -756,6 +756,10 @@ function Convertible() {
   frontWheel.position.x = 18;
   car.add(frontWheel);
 
+  const rightHeadlight = new Headlight();
+  rightHeadlight.position.set(25,0,20)
+  car.add(rightHeadlight)
+
   if (config.showHitZones) {
     car.userData.hitZone1 = HitZone();
     car.userData.hitZone2 = HitZone();
@@ -879,6 +883,15 @@ function Wheel() {
   return wheel;
 }
 
+function Headlight() {
+  const headlight = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(4, 4, 4),
+    new THREE.MeshLambertMaterial({ color: 0xffffff })
+  );
+  // headlight.position.z = 6;
+  return headlight;
+}
+
 function Tree() {
   const tree = new THREE.Group();
 
@@ -985,7 +998,9 @@ function movePlayerCar(timeDelta) {
   playerCar.position.x = playerX;
   playerCar.position.y = playerY;
 
-  playerCar.rotation.z = totalPlayerAngle - Math.PI / 2;
+  // FIXME: TEMP ROTATION 
+  playerCar.rotation.z = totalPlayerAngle *1.5;
+  // playerCar.rotation.z = totalPlayerAngle - Math.PI / 2;
 }
 
 function moveOtherVehicles(timeDelta) {
