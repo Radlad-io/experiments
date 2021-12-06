@@ -5,6 +5,7 @@ import { GUI } from "dat.gui";
 
 const scene = new THREE.Scene();
 scene.add(new THREE.AxesHelper(5));
+const gui = new GUI();
 
 const wheelGeometry = new THREE.BoxBufferGeometry(12, 33, 12);
 const wheelMaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
@@ -48,31 +49,48 @@ function Wheel() {
   return wheel;
 }
 
-function Headlight() {
+function HeadlightTarget() {
+  const headlightTarget = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(4, 4, 4),
+    new THREE.MeshBasicMaterial({ color: 0x666666, visible: false })
+  );
+  headlightTarget.castShadow = false;
+  headlightTarget.receiveShadow = false;
+  return headlightTarget;
+}
+
+const lightFolder = gui.addFolder("Light");
+function Headlight(target) {
   // Headlight geometry
   const headlight = new THREE.Mesh(
     new THREE.BoxBufferGeometry(1, 5, 4),
     new THREE.MeshStandardMaterial({ color: 0xdbe5ff, emissive: 0xdbe5ff })
   );
-
   // Headlight spotlight
-  const distance = 25;
-  const angle = Math.PI / 4.0;
-  const penumbra = 0.5;
-  const decay = 1;
+  const distance = 450;
+  const angel = Math.PI / 2.0;
+  const penumbra = 0.05;
+  const decay = 0;
   const spotlight = new THREE.SpotLight(
     0xdbe5ff,
     1,
     distance,
-    angle,
+    angel,
     penumbra,
     decay
   );
-  spotlight.position.set(5, 0, 0);
-  spotlight.target.position.set(0, 0, 0);
+  spotlight.position.set(10, 0, 0);
+  spotlight.rotation.set(0, Math.PI / 2, 0);
+  spotlight.target.position.set(20, 0, 0);
+  spotlight.target = target;
+  scene.add(spotlight.target);
+  lightFolder.add(spotlight.position, "x", -200, 200, 1, 2);
+  lightFolder.add(spotlight.rotation, "x", -10, 10, 0.001, 0);
+  lightFolder.add(spotlight.rotation, "y", -10, 10, 0.001, 0);
+  lightFolder.add(spotlight.rotation, "z", -10, 10, 0.001, 0);
   headlight.add(spotlight);
   // Visualizes light
-  const helper = new THREE.DirectionalLightHelper(spotlight, 5);
+  const helper = new THREE.DirectionalLightHelper(spotlight, 5, 0x00ff00);
   scene.add(helper);
   return headlight;
 }
@@ -123,11 +141,15 @@ function Convertible() {
   frontWheel.position.x = 18;
   convertible.add(frontWheel);
 
-  const rightHeadlight = new Headlight();
+  const headlightTarget = new HeadlightTarget();
+  headlightTarget.position.set(50, 0, 15);
+  convertible.add(headlightTarget);
+
+  const rightHeadlight = new Headlight(headlightTarget);
   rightHeadlight.position.set(30.5, 10, 15);
   convertible.add(rightHeadlight);
 
-  const leftHeadlight = new Headlight();
+  const leftHeadlight = new Headlight(headlightTarget);
   leftHeadlight.position.set(30.5, -10, 15);
   convertible.add(leftHeadlight);
 
@@ -141,13 +163,16 @@ const Wall = new THREE.Mesh(
 Wall.position.set(100, 0, 25);
 scene.add(Wall);
 
+const wallFolder = gui.addFolder("Wall");
+wallFolder.add(Wall.position, "x", 0, 200, 10, 100);
+
 const playerCar = Convertible();
 scene.add(playerCar);
 
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.2);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.05);
 scene.add(ambientLight);
 
-const dirLight = new THREE.DirectionalLight(0xffffff, 0.6);
+const dirLight = new THREE.DirectionalLight(0xffffff, 0.3);
 dirLight.position.set(100, -300, 400);
 scene.add(dirLight);
 
@@ -177,9 +202,14 @@ scene.add(gridXZ);
 camera.up.set(0, 0, 1);
 camera.lookAt(0, 0, 0);
 
+// FOG
+// const fogColor = new THREE.Color(0xffffff);
+// scene.background = fogColor;
+// scene.fog = new THREE.FogExp2(fogColor, 0.0025, 5);
+
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x005131, 1);
+renderer.setClearColor(0x005131, 0.5);
 renderer.render(scene, camera);
 
 document.body.appendChild(renderer.domElement);
@@ -191,9 +221,6 @@ function onWindowResize() {
   renderer.setSize(window.innerWidth, window.innerHeight);
   render();
 }
-const gui = new GUI();
-const wallFolder = gui.addFolder("Wall");
-wallFolder.add(Wall.position, "x", 0, 200, 10, 100);
 
 const stats = Stats();
 document.body.appendChild(stats.dom);

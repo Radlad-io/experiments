@@ -143,10 +143,10 @@ scene.add(playerCar);
 renderMap(cameraWidth, cameraHeight * 2); // The map height is higher because we look at the map from an angle
 
 // Set up lights
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.6);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(ambientLight);
 
-const dirLight = new THREE.DirectionalLight(0xfff8a1, 0.6);
+const dirLight = new THREE.DirectionalLight(0xfff8a1, 0.15);
 dirLight.position.set(100, -300, 300);
 dirLight.castShadow = true;
 dirLight.shadow.mapSize.width = 1024;
@@ -708,11 +708,48 @@ function Car() {
   return car;
 }
 
+function HeadlightTarget() {
+  const headlightTarget = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(4, 4, 4),
+    new THREE.MeshBasicMaterial({ color: 0x666666, visible: false })
+  );
+  headlightTarget.castShadow = false;
+  headlightTarget.receiveShadow = false;
+  return headlightTarget;
+}
+
+function Headlight(target) {
+  // Headlight geometry
+  const headlight = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(1, 5, 4),
+    new THREE.MeshStandardMaterial({ color: 0xdbe5ff, emissive: 0xdbe5ff })
+  );
+  // Headlight spotlight
+  const distance = 450;
+  const angle = Math.PI / 4;
+  const penumbra = 0.75;
+  const decay = 1;
+  const spotlight = new THREE.SpotLight(
+    0xdbe5ff,
+    1,
+    distance,
+    angle,
+    penumbra,
+    decay
+  );
+  spotlight.intensity = 4;
+  spotlight.position.set(2, 0, 0);
+  spotlight.target.position.set(20, 0, 0);
+  scene.add(spotlight.target);
+  spotlight.target = target;
+  headlight.add(spotlight);
+
+  return headlight;
+}
+
 function Convertible() {
-  const car = new THREE.Group();
-
+  const convertible = new THREE.Group();
   const color = 0xfd4058;
-
   const main = new THREE.Mesh(
     new THREE.BoxBufferGeometry(60, 30, 15),
     new THREE.MeshLambertMaterial({ color })
@@ -720,7 +757,7 @@ function Convertible() {
   main.position.z = 12;
   main.castShadow = true;
   main.receiveShadow = true;
-  car.add(main);
+  convertible.add(main);
 
   const carFrontTexture = getCarFrontTexture();
   carFrontTexture.center = new THREE.Vector2(0.5, 0.5);
@@ -739,33 +776,36 @@ function Convertible() {
     new THREE.MeshLambertMaterial({ color: 0xffffff }), // bottom
   ]);
 
-  windshield.position.x = 5;
+  windshield.position.x = 8;
   windshield.position.y = 0;
   windshield.position.z = 25.5;
   // windshield.position.set(0, 0, 35.5);
 
   windshield.castShadow = true;
   windshield.receiveShadow = true;
-  car.add(windshield);
+  convertible.add(windshield);
 
   const backWheel = new Wheel();
   backWheel.position.x = -18;
-  car.add(backWheel);
+  convertible.add(backWheel);
 
   const frontWheel = new Wheel();
   frontWheel.position.x = 18;
-  car.add(frontWheel);
+  convertible.add(frontWheel);
 
-  const rightHeadlight = new Headlight();
-  rightHeadlight.position.set(25,0,20)
-  car.add(rightHeadlight)
+  const headlightTarget = new HeadlightTarget();
+  headlightTarget.position.set(50, 0, 15);
+  convertible.add(headlightTarget);
 
-  if (config.showHitZones) {
-    car.userData.hitZone1 = HitZone();
-    car.userData.hitZone2 = HitZone();
-  }
+  const rightHeadlight = new Headlight(headlightTarget);
+  rightHeadlight.position.set(30.5, 10, 15);
+  convertible.add(rightHeadlight);
 
-  return car;
+  const leftHeadlight = new Headlight(headlightTarget);
+  leftHeadlight.position.set(30.5, -10, 15);
+  convertible.add(leftHeadlight);
+
+  return convertible;
 }
 
 function getTruckFrontTexture() {
@@ -883,15 +923,6 @@ function Wheel() {
   return wheel;
 }
 
-function Headlight() {
-  const headlight = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(4, 4, 4),
-    new THREE.MeshLambertMaterial({ color: 0xffffff })
-  );
-  // headlight.position.z = 6;
-  return headlight;
-}
-
 function Tree() {
   const tree = new THREE.Group();
 
@@ -997,10 +1028,7 @@ function movePlayerCar(timeDelta) {
 
   playerCar.position.x = playerX;
   playerCar.position.y = playerY;
-
-  // FIXME: TEMP ROTATION 
-  playerCar.rotation.z = totalPlayerAngle *1.5;
-  // playerCar.rotation.z = totalPlayerAngle - Math.PI / 2;
+  playerCar.rotation.z = totalPlayerAngle - Math.PI / 2;
 }
 
 function moveOtherVehicles(timeDelta) {
