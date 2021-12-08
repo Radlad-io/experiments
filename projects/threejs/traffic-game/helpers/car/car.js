@@ -49,54 +49,45 @@ function Wheel() {
   return wheel;
 }
 
-function HeadlightTarget() {
-  const headlightTarget = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(4, 4, 4),
-    new THREE.MeshBasicMaterial({ color: 0x666666, visible: false })
-  );
-  headlightTarget.castShadow = false;
-  headlightTarget.receiveShadow = false;
-  return headlightTarget;
-}
-
 const lightFolder = gui.addFolder("Light");
-function Headlight(target) {
+function Headlight() {
   // Headlight geometry
   const headlight = new THREE.Mesh(
     new THREE.BoxBufferGeometry(1, 5, 4),
     new THREE.MeshStandardMaterial({ color: 0xdbe5ff, emissive: 0xdbe5ff })
   );
-  // Headlight spotlight
-  const distance = 150;
-  const angel = 0.075;
-  const penumbra = 0.05;
-  const decay = 0;
-  const spotlight = new THREE.SpotLight(
-    0xdbe5ff,
-    1,
-    distance,
-    angel,
-    penumbra,
-    decay
-  );
-  spotlight.position.set(0, 0, 0);
-  spotlight.rotation.set(0, Math.PI / 4, 0);
-  spotlight.target.position.set(0, 0, 0);
-  scene.add(spotlight.target);
-  lightFolder.add(spotlight.position, "x", -200, 200, 1, 2);
-  lightFolder.add(spotlight.rotation, "x", -10, 10, 0.001, 0);
-  lightFolder.add(spotlight.rotation, "y", -10, 10, 0.001, 0);
-  lightFolder.add(spotlight.rotation, "z", -10, 10, 0.001, 0);
-  lightFolder.add(spotlight.target.position, "x", -10, 10, 0.001, 0);
-  lightFolder.add(spotlight.target.position, "y", -10, 10, 0.001, 0);
-  lightFolder.add(spotlight.target.position, "z", -10, 10, 0.001, 0);
-
-  headlight.add(spotlight);
-  // Visualizes light
-  const helper = new THREE.SpotLightHelper(spotlight, 5, 0x00ff00);
+  const distance = 200;
+  const angel = Math.PI / 12;
+  const light = new THREE.SpotLight(0xffffff, 1, distance, angel);
+  light.target.position.set(200, 0, 10);
+  light.target.updateMatrixWorld();
+  headlight.add(light);
+  const helper = new THREE.SpotLightHelper(light, 0x00ff00);
   scene.add(helper);
   return headlight;
 }
+
+// Headlight spotlight
+// const distance = 250;
+// const angel = 0.075;
+// const penumbra = 0;
+// const decay = 0;
+// const spotlight = new THREE.SpotLight(
+//   0xdbe5ff,
+//   1,
+//   distance,
+//   angel,
+//   penumbra,
+//   decay
+// );
+// spotlight.position.set(35, 0, 0);
+// spotlight.target.position.set(45, 0, 0);
+
+// scene.add(spotlight);
+// scene.add(spotlight.target);
+// // Visualizes light
+// const helper = new THREE.SpotLightHelper(spotlight, 0x00ff00);
+// scene.add(helper);
 
 function Convertible() {
   const convertible = new THREE.Group();
@@ -130,7 +121,6 @@ function Convertible() {
   windshield.position.x = 8;
   windshield.position.y = 0;
   windshield.position.z = 25.5;
-  // windshield.position.set(0, 0, 35.5);
 
   windshield.castShadow = true;
   windshield.receiveShadow = true;
@@ -144,15 +134,11 @@ function Convertible() {
   frontWheel.position.x = 18;
   convertible.add(frontWheel);
 
-  const headlightTarget = new HeadlightTarget();
-  headlightTarget.position.set(50, 0, 15);
-  convertible.add(headlightTarget);
-
-  const rightHeadlight = new Headlight(headlightTarget);
+  const rightHeadlight = new Headlight();
   rightHeadlight.position.set(30.5, 10, 15);
   convertible.add(rightHeadlight);
 
-  const leftHeadlight = new Headlight(headlightTarget);
+  const leftHeadlight = new Headlight();
   leftHeadlight.position.set(30.5, -10, 15);
   convertible.add(leftHeadlight);
 
@@ -161,13 +147,13 @@ function Convertible() {
 
 const Wall = new THREE.Mesh(
   new THREE.BoxBufferGeometry(10, 50, 50),
-  new THREE.MeshLambertMaterial({ color: 0x666666 })
+  new THREE.MeshPhongMaterial({ color: "white", side: THREE.DoubleSide })
 );
 Wall.position.set(100, 0, 25);
 scene.add(Wall);
 
 const wallFolder = gui.addFolder("Wall");
-wallFolder.add(Wall.position, "x", 0, 200, 10, 100);
+wallFolder.add(Wall.position, "x", -300, 300, 10, 0);
 
 const playerCar = Convertible();
 scene.add(playerCar);
@@ -205,14 +191,9 @@ scene.add(gridXZ);
 camera.up.set(0, 0, 1);
 camera.lookAt(0, 0, 0);
 
-// FOG
-// const fogColor = new THREE.Color(0xffffff);
-// scene.background = fogColor;
-// scene.fog = new THREE.FogExp2(fogColor, 0.0025, 5);
-
 const renderer = new THREE.WebGLRenderer({ antialias: true });
 renderer.setSize(window.innerWidth, window.innerHeight);
-renderer.setClearColor(0x005131, 0.5);
+renderer.setPixelRatio(window.devicePixelRatio);
 renderer.render(scene, camera);
 
 document.body.appendChild(renderer.domElement);

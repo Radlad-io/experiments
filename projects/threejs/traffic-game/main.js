@@ -62,12 +62,12 @@ const treeCrownColor = 0x03331a;
 const treeTrunkColor = 0x4b3f2f;
 
 const wheelGeometry = new THREE.BoxBufferGeometry(12, 33, 12);
-const wheelMaterial = new THREE.MeshLambertMaterial({ color: 0x333333 });
+const wheelMaterial = new THREE.MeshPhongMaterial({ color: 0x333333 });
 const treeTrunkGeometry = new THREE.BoxBufferGeometry(15, 15, 30);
-const treeTrunkMaterial = new THREE.MeshLambertMaterial({
+const treeTrunkMaterial = new THREE.MeshPhongMaterial({
   color: treeTrunkColor,
 });
-const treeCrownMaterial = new THREE.MeshLambertMaterial({
+const treeCrownMaterial = new THREE.MeshPhongMaterial({
   color: treeCrownColor,
 });
 
@@ -143,10 +143,10 @@ scene.add(playerCar);
 renderMap(cameraWidth, cameraHeight * 2); // The map height is higher because we look at the map from an angle
 
 // Set up lights
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.01);
 scene.add(ambientLight);
 
-const dirLight = new THREE.DirectionalLight(0xfff8a1, 0.15);
+const dirLight = new THREE.DirectionalLight(0xfff8a1, 0.05);
 dirLight.position.set(100, -300, 300);
 dirLight.castShadow = true;
 dirLight.shadow.mapSize.width = 1024;
@@ -513,7 +513,7 @@ function renderMap(mapWidth, mapHeight) {
   const lineMarkingsTexture = getLineMarkings(mapWidth, mapHeight);
 
   const planeGeometry = new THREE.PlaneBufferGeometry(mapWidth, mapHeight);
-  const planeMaterial = new THREE.MeshLambertMaterial({
+  const planeMaterial = new THREE.MeshPhongMaterial({
     map: lineMarkingsTexture,
   });
   const plane = new THREE.Mesh(planeGeometry, planeMaterial);
@@ -541,12 +541,12 @@ function renderMap(mapWidth, mapHeight) {
   );
 
   const fieldMesh = new THREE.Mesh(fieldGeometry, [
-    new THREE.MeshLambertMaterial({
+    new THREE.MeshPhongMaterial({
       // Either set a plain color or a texture depending on config
       color: !config.curbs && lawnGreen,
       map: config.curbs && curbsTexture,
     }),
-    new THREE.MeshLambertMaterial({ color: 0x23311c }),
+    new THREE.MeshPhongMaterial({ color: 0x23311c }),
   ]);
   fieldMesh.receiveShadow = true;
   fieldMesh.matrixAutoUpdate = false;
@@ -660,7 +660,7 @@ function Car() {
 
   const main = new THREE.Mesh(
     new THREE.BoxBufferGeometry(60, 30, 15),
-    new THREE.MeshLambertMaterial({ color })
+    new THREE.MeshPhongMaterial({ color })
   );
   main.position.z = 12;
   main.castShadow = true;
@@ -681,12 +681,12 @@ function Car() {
   const carRightSideTexture = getCarSideTexture();
 
   const cabin = new THREE.Mesh(new THREE.BoxBufferGeometry(33, 24, 12), [
-    new THREE.MeshLambertMaterial({ map: carFrontTexture }),
-    new THREE.MeshLambertMaterial({ map: carBackTexture }),
-    new THREE.MeshLambertMaterial({ map: carLeftSideTexture }),
-    new THREE.MeshLambertMaterial({ map: carRightSideTexture }),
-    new THREE.MeshLambertMaterial({ color: 0xffffff }), // top
-    new THREE.MeshLambertMaterial({ color: 0xffffff }), // bottom
+    new THREE.MeshPhongMaterial({ map: carFrontTexture }),
+    new THREE.MeshPhongMaterial({ map: carBackTexture }),
+    new THREE.MeshPhongMaterial({ map: carLeftSideTexture }),
+    new THREE.MeshPhongMaterial({ map: carRightSideTexture }),
+    new THREE.MeshPhongMaterial({ color: 0xffffff }), // top
+    new THREE.MeshPhongMaterial({ color: 0xffffff }), // bottom
   ]);
   cabin.position.x = -6;
   cabin.position.z = 25.5;
@@ -702,6 +702,14 @@ function Car() {
   frontWheel.position.x = 18;
   car.add(frontWheel);
 
+  const rightHeadlight = new Headlight(false);
+  rightHeadlight.position.set(30.5, 10, 15);
+  car.add(rightHeadlight);
+
+  const leftHeadlight = new Headlight(false);
+  leftHeadlight.position.set(30.5, -10, 15);
+  car.add(leftHeadlight);
+
   if (config.showHitZones) {
     car.userData.hitZone1 = HitZone();
     car.userData.hitZone2 = HitZone();
@@ -710,42 +718,24 @@ function Car() {
   return car;
 }
 
-function HeadlightTarget() {
-  const headlightTarget = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(4, 4, 4),
-    new THREE.MeshBasicMaterial({ color: 0x666666, visible: false })
-  );
-  headlightTarget.castShadow = false;
-  headlightTarget.receiveShadow = false;
-  return headlightTarget;
-}
-
-function Headlight(target) {
+function Headlight(projecting) {
   // Headlight geometry
   const headlight = new THREE.Mesh(
     new THREE.BoxBufferGeometry(1, 5, 4),
     new THREE.MeshStandardMaterial({ color: 0xdbe5ff, emissive: 0xdbe5ff })
   );
-  // Headlight spotlight
-  const distance = 450;
-  const angle = Math.PI / 4;
-  const penumbra = 0.75;
-  const decay = 1;
-  const spotlight = new THREE.SpotLight(
-    0xdbe5ff,
-    1,
-    distance,
-    angle,
-    penumbra,
-    decay
-  );
-  spotlight.intensity = 4;
-  spotlight.position.set(2, 0, 0);
-  spotlight.target.position.set(20, 0, 0);
-  scene.add(spotlight.target);
-  spotlight.target = target;
-  headlight.add(spotlight);
-
+  const distance = 600;
+  const angel = Math.PI / 1.65;
+  const penumbra = 0.25;
+  if (projecting) {
+    const light = new THREE.SpotLight(0xffffff, 12, distance, penumbra, angel);
+    light.castShadow = true;
+    light.shadow.mapSize.width = 1024;
+    light.shadow.mapSize.height = 1024;
+    light.target.position.set(600, 0, 10);
+    headlight.add(light.target);
+    headlight.add(light);
+  }
   return headlight;
 }
 
@@ -795,15 +785,11 @@ function Convertible() {
   frontWheel.position.x = 18;
   convertible.add(frontWheel);
 
-  const headlightTarget = new HeadlightTarget();
-  headlightTarget.position.set(50, 0, 15);
-  convertible.add(headlightTarget);
-
-  const rightHeadlight = new Headlight(headlightTarget);
+  const rightHeadlight = new Headlight(true);
   rightHeadlight.position.set(30.5, 10, 15);
   convertible.add(rightHeadlight);
 
-  const leftHeadlight = new Headlight(headlightTarget);
+  const leftHeadlight = new Headlight(true);
   leftHeadlight.position.set(30.5, -10, 15);
   convertible.add(leftHeadlight);
 
@@ -846,14 +832,14 @@ function Truck() {
 
   const base = new THREE.Mesh(
     new THREE.BoxBufferGeometry(100, 25, 5),
-    new THREE.MeshLambertMaterial({ color: 0xb4c6fc })
+    new THREE.MeshPhongMaterial({ color: 0xb4c6fc })
   );
   base.position.z = 10;
   truck.add(base);
 
   const cargo = new THREE.Mesh(
     new THREE.BoxBufferGeometry(75, 35, 40),
-    new THREE.MeshLambertMaterial({ color: 0xffffff }) // 0xb4c6fc
+    new THREE.MeshPhongMaterial({ color: 0xffffff }) // 0xb4c6fc
   );
   cargo.position.x = -15;
   cargo.position.z = 30;
@@ -871,12 +857,12 @@ function Truck() {
   const truckRightTexture = getTruckSideTexture();
 
   const cabin = new THREE.Mesh(new THREE.BoxBufferGeometry(25, 30, 30), [
-    new THREE.MeshLambertMaterial({ color, map: truckFrontTexture }),
-    new THREE.MeshLambertMaterial({ color }), // back
-    new THREE.MeshLambertMaterial({ color, map: truckLeftTexture }),
-    new THREE.MeshLambertMaterial({ color, map: truckRightTexture }),
-    new THREE.MeshLambertMaterial({ color }), // top
-    new THREE.MeshLambertMaterial({ color }), // bottom
+    new THREE.MeshPhongMaterial({ color, map: truckFrontTexture }),
+    new THREE.MeshPhongMaterial({ color }), // back
+    new THREE.MeshPhongMaterial({ color, map: truckLeftTexture }),
+    new THREE.MeshPhongMaterial({ color, map: truckRightTexture }),
+    new THREE.MeshPhongMaterial({ color }), // top
+    new THREE.MeshPhongMaterial({ color }), // bottom
   ]);
   cabin.position.x = 40;
   cabin.position.z = 20;
@@ -896,6 +882,14 @@ function Truck() {
   frontWheel.position.x = 38;
   truck.add(frontWheel);
 
+  const rightHeadlight = new Headlight(false);
+  rightHeadlight.position.set(52.5, 10, 15);
+  truck.add(rightHeadlight);
+
+  const leftHeadlight = new Headlight(false);
+  leftHeadlight.position.set(52.5, -10, 15);
+  truck.add(leftHeadlight);
+
   if (config.showHitZones) {
     truck.userData.hitZone1 = HitZone();
     truck.userData.hitZone2 = HitZone();
@@ -908,7 +902,7 @@ function Truck() {
 function HitZone() {
   const hitZone = new THREE.Mesh(
     new THREE.CylinderGeometry(20, 20, 60, 30),
-    new THREE.MeshLambertMaterial({ color: 0xff0000 })
+    new THREE.MeshPhongMaterial({ color: 0xff0000 })
   );
   hitZone.position.z = 25;
   hitZone.rotation.x = Math.PI / 2;

@@ -7,16 +7,6 @@ const scene = new THREE.Scene();
 scene.add(new THREE.AxesHelper(5));
 const gui = new GUI();
 
-function HeadlightTarget() {
-  const headlightTarget = new THREE.Mesh(
-    new THREE.BoxBufferGeometry(4, 4, 4),
-    new THREE.MeshBasicMaterial({ color: 0x666666, visible: false })
-  );
-  headlightTarget.castShadow = false;
-  headlightTarget.receiveShadow = false;
-  return headlightTarget;
-}
-
 const lightFolder = gui.addFolder("Light");
 
 const distance = 200;
@@ -39,7 +29,7 @@ spotlight.target.position.set(0, 0, 0);
 scene.add(spotlight.target);
 scene.add(spotlight);
 
-const helper = new THREE.SpotLightHelper(spotlight, 5, 0x00ff00);
+const helper = new THREE.SpotLightHelper(spotlight, 0xff0000);
 scene.add(helper);
 lightFolder.add(spotlight.position, "x", -200, 200, 1, 0).name("Position-X");
 lightFolder.add(spotlight.position, "y", -200, 200, 1, 0).name("Position-Y");
@@ -47,7 +37,7 @@ lightFolder.add(spotlight.position, "z", -200, 200, 1, 100).name("Position-Z");
 
 const Wall = new THREE.Mesh(
   new THREE.BoxBufferGeometry(10, 500, 500),
-  new THREE.MeshLambertMaterial({ color: 0xffffff })
+  new THREE.MeshPhongMaterial({ color: 0xffffff, side: THREE.DoubleSide })
 );
 
 Wall.position.set(0, 0, 0);
