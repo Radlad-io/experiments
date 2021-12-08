@@ -67,8 +67,8 @@ function Headlight(target) {
     new THREE.MeshStandardMaterial({ color: 0xdbe5ff, emissive: 0xdbe5ff })
   );
   // Headlight spotlight
-  const distance = 450;
-  const angel = Math.PI / 2.0;
+  const distance = 150;
+  const angel = 0.075;
   const penumbra = 0.05;
   const decay = 0;
   const spotlight = new THREE.SpotLight(
@@ -79,18 +79,21 @@ function Headlight(target) {
     penumbra,
     decay
   );
-  spotlight.position.set(10, 0, 0);
-  spotlight.rotation.set(0, Math.PI / 2, 0);
-  spotlight.target.position.set(20, 0, 0);
-  spotlight.target = target;
+  spotlight.position.set(0, 0, 0);
+  spotlight.rotation.set(0, Math.PI / 4, 0);
+  spotlight.target.position.set(0, 0, 0);
   scene.add(spotlight.target);
   lightFolder.add(spotlight.position, "x", -200, 200, 1, 2);
   lightFolder.add(spotlight.rotation, "x", -10, 10, 0.001, 0);
   lightFolder.add(spotlight.rotation, "y", -10, 10, 0.001, 0);
   lightFolder.add(spotlight.rotation, "z", -10, 10, 0.001, 0);
+  lightFolder.add(spotlight.target.position, "x", -10, 10, 0.001, 0);
+  lightFolder.add(spotlight.target.position, "y", -10, 10, 0.001, 0);
+  lightFolder.add(spotlight.target.position, "z", -10, 10, 0.001, 0);
+
   headlight.add(spotlight);
   // Visualizes light
-  const helper = new THREE.DirectionalLightHelper(spotlight, 5, 0x00ff00);
+  const helper = new THREE.SpotLightHelper(spotlight, 5, 0x00ff00);
   scene.add(helper);
   return headlight;
 }
