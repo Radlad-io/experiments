@@ -8,6 +8,7 @@ module.exports = defineConfig({
         main: resolve(__dirname, "index.html"),
         car: resolve(__dirname, "helpers/car/index.html"),
         spotlight: resolve(__dirname, "helpers/spotlight/index.html"),
+        lights: resolve(__dirname, "helpers/lights/index.html"),
       },
     },
   },
