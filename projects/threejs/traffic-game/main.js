@@ -1220,6 +1220,7 @@ window.addEventListener("resize", () => {
 
   // Reset renderer
   renderer.setSize(window.innerWidth, window.innerHeight);
+  renderer.setPixelRatio(window.devicePixelRatio);
   renderer.render(scene, camera);
 });
 
