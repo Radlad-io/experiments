@@ -1227,11 +1227,15 @@ window.addEventListener("resize", () => {
 const listener = new THREE.AudioListener();
 camera.add(listener);
 
+import carSoundFile from "./assets/CartoonCarLoop.mp3";
+import musicSoundFile from "./assets/Closing.mp3";
+import crashSoundFile from "./assets/CarCrash.mp3";
+
 // create a global audio source
 const carSound = new THREE.Audio(listener);
 // load a sound and set it as the Audio object's buffer
 const audioLoader = new THREE.AudioLoader();
-audioLoader.load("assets/CartoonCarLoop.mp3", function (buffer) {
+audioLoader.load(carSoundFile, function (buffer) {
   carSound.setBuffer(buffer);
   carSound.setLoop(true);
   carSound.setVolume(0.4);
@@ -1240,7 +1244,7 @@ audioLoader.load("assets/CartoonCarLoop.mp3", function (buffer) {
 // create a global audio source
 const musicSound = new THREE.Audio(listener);
 // load a sound and set it as the Audio object's buffer
-audioLoader.load("assets/Closing.mp3", function (buffer) {
+audioLoader.load(musicSoundFile, function (buffer) {
   musicSound.setBuffer(buffer);
   musicSound.setLoop(true);
   musicSound.setVolume(0.15);
@@ -1249,7 +1253,7 @@ audioLoader.load("assets/Closing.mp3", function (buffer) {
 // create a global audio source
 const crashSound = new THREE.Audio(listener);
 // load a sound and set it as the Audio object's buffer
-audioLoader.load("assets/CarCrash.mp3", function (buffer) {
+audioLoader.load(crashSoundFile, function (buffer) {
   crashSound.setBuffer(buffer);
   crashSound.setLoop(false);
   crashSound.setVolume(0.1);
