@@ -7,7 +7,11 @@ Todo:
   x Create session storage to maintain users highscore
   ☐ Add day night cycle
   ☐ Break the whole thing into modules
-  ☐ Add audio
+  ☐ Sound design
+    x Add music
+    x Add car sound (decelerate / accelerate)
+    x Add crash sound
   ☐ Customization tree generator
   ☐ Helper pages for each model
+  ☐ Add Post Processing
   

@@ -73,7 +73,7 @@ const treeCrownMaterial = new THREE.MeshLambertMaterial({
 
 const config = {
   showHitZones: false,
-  shadows: true, // Use shadow
+  shadows: false, // Use shadow
   trees: true, // Add trees to the map
   curbs: true, // Show texture on the extruded geometry
   grid: false, // Show grid helper
@@ -222,6 +222,8 @@ function reset() {
 function startGame() {
   if (ready) {
     ready = false;
+    carSound.play();
+    musicSound.play();
     scoreElement.innerText = 0;
     buttonsElement.style.opacity = 1;
     instructionsElement.style.opacity = 0;
@@ -948,6 +950,7 @@ function Tree() {
   return tree;
 }
 
+// TODO: Add touch interaction
 accelerateButton.addEventListener("mousedown", function () {
   startGame();
   accelerate = true;
@@ -962,14 +965,17 @@ accelerateButton.addEventListener("mouseup", function () {
 decelerateButton.addEventListener("mouseup", function () {
   decelerate = false;
 });
+// TODO: Add car playbackRate changes here
 window.addEventListener("keydown", function (event) {
   if (event.key == "ArrowUp") {
     startGame();
     accelerate = true;
+    carSound.setPlaybackRate(1.2);
     return;
   }
   if (event.key == "ArrowDown") {
     decelerate = true;
+    carSound.setPlaybackRate(0.8);
     return;
   }
   if (event.key == "R" || event.key == "r") {
@@ -980,10 +986,12 @@ window.addEventListener("keydown", function (event) {
 window.addEventListener("keyup", function (event) {
   if (event.key == "ArrowUp") {
     accelerate = false;
+    carSound.setPlaybackRate(1);
     return;
   }
   if (event.key == "ArrowDown") {
     decelerate = false;
+    carSound.setPlaybackRate(1);
     return;
   }
 });
@@ -1191,6 +1199,8 @@ function hitDetection() {
 
   if (hit) {
     if (resultsElement) resultsElement.style.display = "flex";
+    carSound.pause();
+    crashSound.play();
     renderer.setAnimationLoop(null); // Stop animation loop
   }
 }
@@ -1211,4 +1221,36 @@ window.addEventListener("resize", () => {
   // Reset renderer
   renderer.setSize(window.innerWidth, window.innerHeight);
   renderer.render(scene, camera);
+});
+
+// create an AudioListener and add it to the camera
+const listener = new THREE.AudioListener();
+camera.add(listener);
+
+// create a global audio source
+const carSound = new THREE.Audio(listener);
+// load a sound and set it as the Audio object's buffer
+const audioLoader = new THREE.AudioLoader();
+audioLoader.load("assets/CartoonCarLoop.mp3", function (buffer) {
+  carSound.setBuffer(buffer);
+  carSound.setLoop(true);
+  carSound.setVolume(0.4);
+});
+
+// create a global audio source
+const musicSound = new THREE.Audio(listener);
+// load a sound and set it as the Audio object's buffer
+audioLoader.load("assets/Closing.mp3", function (buffer) {
+  musicSound.setBuffer(buffer);
+  musicSound.setLoop(true);
+  musicSound.setVolume(0.15);
+});
+
+// create a global audio source
+const crashSound = new THREE.Audio(listener);
+// load a sound and set it as the Audio object's buffer
+audioLoader.load("assets/CarCrash.mp3", function (buffer) {
+  crashSound.setBuffer(buffer);
+  crashSound.setLoop(false);
+  crashSound.setVolume(0.1);
 });
