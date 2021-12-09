@@ -2,6 +2,7 @@ import * as THREE from "three";
 import { OrbitControls } from "three/examples/jsm/controls/OrbitControls.js";
 import Stats from "three/examples/jsm/libs/stats.module";
 import { GUI } from "dat.gui";
+import { CSG } from "three-csg-ts";
 
 const scene = new THREE.Scene();
 scene.add(new THREE.AxesHelper(5));
@@ -67,39 +68,45 @@ function Headlight() {
   return headlight;
 }
 
-// Headlight spotlight
-// const distance = 250;
-// const angel = 0.075;
-// const penumbra = 0;
-// const decay = 0;
-// const spotlight = new THREE.SpotLight(
-//   0xdbe5ff,
-//   1,
-//   distance,
-//   angel,
-//   penumbra,
-//   decay
-// );
-// spotlight.position.set(35, 0, 0);
-// spotlight.target.position.set(45, 0, 0);
-
-// scene.add(spotlight);
-// scene.add(spotlight.target);
-// // Visualizes light
-// const helper = new THREE.SpotLightHelper(spotlight, 0x00ff00);
-// scene.add(helper);
-
 function Convertible() {
   const convertible = new THREE.Group();
   const color = 0xfd4058;
+
   const main = new THREE.Mesh(
     new THREE.BoxBufferGeometry(60, 30, 15),
-    new THREE.MeshLambertMaterial({ color })
+    new THREE.MeshPhongMaterial({ color })
   );
   main.position.z = 12;
   main.castShadow = true;
   main.receiveShadow = true;
-  convertible.add(main);
+
+  const cockpit = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(20, 24, 8),
+    new THREE.MeshLambertMaterial({ color: 0xffffff })
+  );
+  cockpit.position.set(-3.8, 0, 16.5);
+
+  main.updateMatrix();
+  cockpit.updateMatrix();
+
+  const subRes = CSG.subtract(main, cockpit);
+  convertible.add(subRes);
+
+  const driverSeat = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(3, 9, 9),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  driverSeat.position.set(-11.5, 5, 17.5);
+  driverSeat.rotation.set(0, Math.PI / -16, 0);
+  convertible.add(driverSeat);
+
+  const passengerSeat = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(3, 9, 9),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  passengerSeat.position.set(-11.5, -5, 17.5);
+  passengerSeat.rotation.set(0, Math.PI / -16, 0);
+  convertible.add(passengerSeat);
 
   const carFrontTexture = getCarFrontTexture();
   carFrontTexture.center = new THREE.Vector2(0.5, 0.5);

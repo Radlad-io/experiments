@@ -19,6 +19,7 @@ Check out my YouTube channel for other game tutorials: https://www.youtube.com/c
 
 import "./style.css";
 import * as THREE from "three";
+import { CSG } from "three-csg-ts";
 
 window.focus(); // Capture keys right away (by default focus is on editor)
 
@@ -143,7 +144,7 @@ scene.add(playerCar);
 renderMap(cameraWidth, cameraHeight * 2); // The map height is higher because we look at the map from an angle
 
 // Set up lights
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.01);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
 scene.add(ambientLight);
 
 const dirLight = new THREE.DirectionalLight(0xfff8a1, 0.05);
@@ -749,7 +750,34 @@ function Convertible() {
   main.position.z = 12;
   main.castShadow = true;
   main.receiveShadow = true;
-  convertible.add(main);
+
+  const cockpit = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(20, 24, 8),
+    new THREE.MeshLambertMaterial({ color: 0xffffff })
+  );
+  cockpit.position.set(-3.8, 0, 16.5);
+
+  main.updateMatrix();
+  cockpit.updateMatrix();
+
+  const subRes = CSG.subtract(main, cockpit);
+  convertible.add(subRes);
+
+  const driverSeat = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(3, 9, 9),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  driverSeat.position.set(-11.5, 5, 17.5);
+  driverSeat.rotation.set(0, Math.PI / -16, 0);
+  convertible.add(driverSeat);
+
+  const passengerSeat = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(3, 9, 9),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  passengerSeat.position.set(-11.5, -5, 17.5);
+  passengerSeat.rotation.set(0, Math.PI / -16, 0);
+  convertible.add(passengerSeat);
 
   const carFrontTexture = getCarFrontTexture();
   carFrontTexture.center = new THREE.Vector2(0.5, 0.5);
