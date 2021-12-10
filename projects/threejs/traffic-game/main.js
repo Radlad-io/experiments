@@ -137,6 +137,7 @@ camera.position.set(0, -210, 300);
 camera.lookAt(0, 0, 0);
 
 const scene = new THREE.Scene();
+scene.fog = new THREE.Fog(0x333333, -1000, 1000);
 
 const playerCar = Convertible();
 scene.add(playerCar);
@@ -144,10 +145,10 @@ scene.add(playerCar);
 renderMap(cameraWidth, cameraHeight * 2); // The map height is higher because we look at the map from an angle
 
 // Set up lights
-const ambientLight = new THREE.AmbientLight(0xffffff, 0.1);
+const ambientLight = new THREE.AmbientLight(0xffffff, 0.025);
 scene.add(ambientLight);
 
-const dirLight = new THREE.DirectionalLight(0xfff8a1, 0.05);
+const dirLight = new THREE.DirectionalLight(0xfff8a1, 0.005);
 dirLight.position.set(100, -300, 300);
 dirLight.castShadow = true;
 dirLight.shadow.mapSize.width = 1024;
@@ -160,8 +161,89 @@ dirLight.shadow.camera.near = 100;
 dirLight.shadow.camera.far = 800;
 scene.add(dirLight);
 
-// const cameraHelper = new THREE.CameraHelper(dirLight.shadow.camera);
-// scene.add(cameraHelper);
+const StreetLamp = () => {
+  const streetLamp = new THREE.Group();
+  const main = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(5, 5, 150),
+    new THREE.MeshPhongMaterial({ color: 0x777777 })
+  );
+  streetLamp.position.set(0, 0, 75);
+  streetLamp.add(main);
+
+  const tee = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(100, 5, 5),
+    new THREE.MeshPhongMaterial({ color: 0x777777 })
+  );
+  tee.position.set(0, 0, 75);
+  streetLamp.add(tee);
+
+  const base = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(10, 10, 10),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  base.position.set(0, 0, -65);
+  streetLamp.add(base);
+
+  const joint = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(10, 10, 10),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  joint.position.set(0, 0, 75);
+  streetLamp.add(joint);
+
+  const rightLight = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(20, 10, 10),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  rightLight.position.set(50, 0, 75);
+  streetLamp.add(rightLight);
+
+  const leftLight = new THREE.Mesh(
+    new THREE.BoxBufferGeometry(20, 10, 10),
+    new THREE.MeshPhongMaterial({ color: 0x666666 })
+  );
+  leftLight.position.set(-50, 0, 75);
+  streetLamp.add(leftLight);
+
+  const distance = 250;
+  const angel = 20;
+  const penumbra = 0.00025;
+  const decay = 0.9;
+  const rightlight = new THREE.SpotLight(
+    0xffffff,
+    6,
+    distance,
+    penumbra,
+    angel,
+    decay
+  );
+  rightlight.castShadow = true;
+  rightlight.position.set(60, 0, 50);
+  rightlight.target.position.set(75, 0, -250);
+  streetLamp.add(rightlight.target);
+  streetLamp.add(rightlight);
+
+  const leftlight = new THREE.SpotLight(
+    0xffffff,
+    6,
+    distance,
+    penumbra,
+    angel,
+    decay
+  );
+  leftlight.castShadow = true;
+  leftlight.position.set(-60, 0, 50);
+  leftlight.target.position.set(-75, 0, -250);
+  streetLamp.add(leftlight.target);
+  streetLamp.add(leftlight);
+
+  streetLamp.castShadow = true;
+  streetLamp.receiveShadow = true;
+
+  return streetLamp;
+};
+const lamp = StreetLamp();
+scene.add(lamp);
 
 if (config.grid) {
   const gridHelper = new THREE.GridHelper(80, 8);
